@@ -106,3 +106,7 @@ dist
 
 # Test files
 test
+test.js
+
+# Config file
+config.json
