@@ -343,7 +343,7 @@ class Woo {
     }
   }
 
-    /**
+  /**
    * Delete a customer.
    * @async
    * @param {number} id
@@ -419,6 +419,227 @@ class Woo {
       return error
     }
   }
+
+  ////////// ORDERS //////////
+
+  /**
+   * Create a new order.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async orderCreate(data) {
+    try {
+      const response = await this.client.post('orders', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Create a new order.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async orderAdd(data) {
+    try {
+      const response = await this.client.post('orders', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific order by ID.
+   * @async
+   * @param {number} id 
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async orderRetrieve(id, params = {}) {
+    try {
+      const response = await this.client.get(`orders/${id}`, params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific order by ID.
+   * @async
+   * @param {number} id 
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async orderGet(id, params = {}) {
+    try {
+      const response = await this.client.get(`orders/${id}`, params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * View all the orders.
+   * @async
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async orderList(params = {}) {
+    try {
+      const response = await this.client.get('orders', params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * View all the orders.
+   * @async
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async orderGetAll(params = {}) {
+    try {
+      const response = await this.client.get('orders', params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Make changes to an order.
+   * @async
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async orderUpdate(id, data) {
+    try {
+      const response = await this.client.put(`orders/${id}`, data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Make changes to an order.
+   * @async
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async orderEdit(id, data) {
+    try {
+      const response = await this.client.put(`orders/${id}`, data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Delete an order.
+   * @async
+   * @param {number} id
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async orderDelete(id, params = { force: false}) {
+    try {
+      const response = await this.client.delete(`orders/${id}`, params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Delete an order.
+   * @async
+   * @param {number} id
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async orderRemove(id, params = { force: false}) {
+    try {
+      const response = await this.client.delete(`orders/${id}`, params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple orders.
+   * @async
+   * @param {object} data 
+   * @returns 
+   */
+  async orderBatchUpdate(data) {
+    try {
+      const response = await this.client.post('orders/batch', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple orders.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async orderBatch(data) {
+    try {
+      const response = await this.client.post('orders/batch', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Create a new note for an order.
+   * @async
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async orderNoteCreate(id, data) {
+    try {
+      const response = await this.client.post(`orders/${id}/notes`, data)
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Create a new note for an order.
+   * @async
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async orderNoteAdd(id, data) {
+    try {
+      const response = await this.client.post(`orders/${id}/notes`, data)
+    } catch (error) {
+      return error
+    }
+  }
+
+
+  
 }
 
 
