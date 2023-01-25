@@ -1,0 +1,25 @@
+{
+  "name": "woojs",
+  "version": "1.0.0",
+  "description": "JavaScript Library for WooCommerce REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zekeotronic/wooJS.git"
+  },
+  "keywords": [
+    "woocommerce"
+  ],
+  "author": "Eric Ihle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zekeotronic/wooJS/issues"
+  },
+  "homepage": "https://github.com/zekeotronic/wooJS#readme",
+  "dependencies": {
+    "@woocommerce/woocommerce-rest-api": "^1.0.1"
+  }
+}
