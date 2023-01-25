@@ -1,6 +1,6 @@
 {
   "name": "woojs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JavaScript Library for WooCommerce REST API",
   "main": "index.js",
   "scripts": {
