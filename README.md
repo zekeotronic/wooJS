@@ -658,3 +658,22 @@ woo
 > [`data` options](#customer-properties)
 
 #### Retrieve Customer Downloads
+
+`.customerDownloads()`
+
+> (method) Woo.customerDownloads(id: number): object
+
+Retrieve customer downloads permissions.
+
+Example:
+
+```javascript
+woo
+  .customerDownloads(1)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```

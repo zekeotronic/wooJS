@@ -159,6 +159,7 @@ class Woo {
 
   /**
    * Delete a coupon.
+   * @async
    * @param {number} id
    * @param {object} params
    * @returns {object} Response
@@ -174,6 +175,7 @@ class Woo {
 
   /**
    * Delete a coupon.
+   * @async
    * @param {number} id
    * @param {object} params
    * @returns {object} Response
@@ -189,6 +191,7 @@ class Woo {
 
   /**
    * Batch create, update and delete multiple coupons.
+   * @async
    * @param {object} data 
    * @returns 
    */
@@ -203,6 +206,7 @@ class Woo {
 
   /**
    * Batch create, update and delete multiple coupons.
+   * @async
    * @param {object} data 
    * @returns {object} Response
    */
@@ -219,6 +223,7 @@ class Woo {
 
   /**
    * Create a new customer.
+   * @async
    * @param {object} data 
    * @returns {object} Response
    */
@@ -233,6 +238,7 @@ class Woo {
 
   /**
    * Create a new customer.
+   * @async
    * @param {object} data 
    * @returns {object} Response
    */
@@ -247,6 +253,7 @@ class Woo {
 
   /**
    * Retrieve and view a specific customer by ID.
+   * @async
    * @param {number} id 
    * @returns {object} Response
    */
@@ -261,6 +268,7 @@ class Woo {
 
   /**
    * Retrieve and view a specific customer by ID.
+   * @async
    * @param {number} id 
    * @returns {object} Response
    */
@@ -275,6 +283,7 @@ class Woo {
 
   /**
    * View all the customers.
+   * @async
    * @param {object} params 
    * @returns {object} Response
    */
@@ -289,6 +298,7 @@ class Woo {
 
   /**
    * View all the customers.
+   * @async
    * @param {object} params 
    * @returns {object} Response
    */
@@ -303,6 +313,7 @@ class Woo {
 
   /**
    * Make changes to a customer.
+   * @async
    * @param {number} id 
    * @param {object} data 
    * @returns {object} Response
@@ -318,6 +329,7 @@ class Woo {
 
   /**
    * Make changes to a customer.
+   * @async
    * @param {number} id 
    * @param {object} data 
    * @returns {object} Response
@@ -333,6 +345,7 @@ class Woo {
 
     /**
    * Delete a customer.
+   * @async
    * @param {number} id
    * @param {object} params
    * @returns {object} Response
@@ -348,6 +361,7 @@ class Woo {
 
   /**
    * Delete a customer.
+   * @async
    * @param {number} id
    * @param {object} params
    * @returns {object} Response
@@ -363,6 +377,7 @@ class Woo {
 
   /**
    * Batch create, update and delete multiple coupons.
+   * @async
    * @param {object} data 
    * @returns 
    */
@@ -377,12 +392,28 @@ class Woo {
 
   /**
    * Batch create, update and delete multiple coupons.
+   * @async
    * @param {object} data 
    * @returns {object} Response
    */
   async customerBatch(data) {
     try {
       const response = await this.client.post('customers/batch', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Retrieve customer downloads permissions.
+   * @async
+   * @param {number} id 
+   * @returns {object} Response
+   */
+  async customerDownloads(id) {
+    try {
+      const response = await this.client.get(`customers/${id}/downloads`);
       return response
     } catch (error) {
       return error
