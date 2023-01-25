@@ -51,6 +51,21 @@ class Woo {
   }
 
   /**
+   * @async
+   * Creates a new coupon
+   * @param {object} data Object containing the data to create a coupon
+   * @return {object} Response
+   */
+  async couponAdd(data) {
+    try {
+      const response = await this.client.post('coupons', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
    * Retrieve and view a specific coupon by ID
    * @async
    * @param {number} id Coupon ID
@@ -127,12 +142,43 @@ class Woo {
   }
 
   /**
+   * Make changes to a coupon.
+   * @async
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async couponEdit(id, data) {
+    try {
+      const response = await this.client.put(`coupons/${id}`, data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
    * Delete a coupon.
    * @param {number} id
    * @param {object} params
    * @returns {object} Response
    */
   async couponDelete(id, params = { force: false}) {
+    try {
+      const response = await this.client.delete(`coupons/${id}`, params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Delete a coupon.
+   * @param {number} id
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async couponRemove(id, params = { force: false}) {
     try {
       const response = await this.client.delete(`coupons/${id}`, params);
       return response
@@ -163,6 +209,180 @@ class Woo {
   async couponBatch(data) {
     try {
       const response = await this.client.post('coupons/batch', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  ////////// CUSTOMERS //////////
+
+  /**
+   * Create a new customer.
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async customerCreate(data) {
+    try {
+      const response = await this.client.post('customers', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Create a new customer.
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async customerAdd(data) {
+    try {
+      const response = await this.client.post('customers', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific customer by ID.
+   * @param {number} id 
+   * @returns {object} Response
+   */
+  async customerRetrieve(id) {
+    try {
+      const response = await this.client.get(`customers/${id}`);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific customer by ID.
+   * @param {number} id 
+   * @returns {object} Response
+   */
+  async customerGet(id) {
+    try {
+      const response = await this.client.get(`customers/${id}`);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * View all the customers.
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async customerList(params = {}) {
+    try {
+      const response = await this.client.get('customers', params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * View all the customers.
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async customerGetAll(params = {}) {
+    try {
+      const response = await this.client.get('customers', params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Make changes to a customer.
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async customerUpdate(id, data) {
+    try {
+      const response = await this.client.put(`customers/${id}`, data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Make changes to a customer.
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async customerEdit(id, data) {
+    try {
+      const response = await this.client.put(`customers/${id}`, data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+    /**
+   * Delete a customer.
+   * @param {number} id
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async customerDelete(id, params = { force: true}) {
+    try {
+      const response = await this.client.delete(`customers/${id}`, params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Delete a customer.
+   * @param {number} id
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async customerRemove(id, params = { force: true}) {
+    try {
+      const response = await this.client.delete(`customers/${id}`, params);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple coupons.
+   * @param {object} data 
+   * @returns 
+   */
+  async customerBatchUpdate(data) {
+    try {
+      const response = await this.client.post('customers/batch', data);
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple coupons.
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async customerBatch(data) {
+    try {
+      const response = await this.client.post('customers/batch', data);
       return response
     } catch (error) {
       return error

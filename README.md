@@ -25,6 +25,21 @@ Extends [`@woocommerce/woocommerce-rest-api
     - [Delete Coupon](#delete-coupon)
       - [Delete Coupon Parameters](#delete-coupon-parameters)
     - [Batch Update Coupons](#batch-update-coupons)
+- [Customers](#customers)
+  - [Customer Properties](#customer-properties)
+    - [Customer Billing Properties](#customer---billing-properties)
+    - [Customer Shipping Properties](#customer---shipping-properties)
+    - [Customer Meta Data Properties](#customer---meta-data-properties)
+  - [Methods](#customer-methods)
+    - [Create Customer](#create-customer)
+    - [Retrieve Customer](#retrieve-customer)
+    - [List Customers](#list-customers)
+      - [List Customers Parameters](#list-customers-parameters)
+    - [Update Customer](#update-customer)
+    - [Delete Customer](#delete-customer)
+      - [Delete Customer Parameters](#delete-customer-parameters)
+    - [Batch Update Customers](#batch-update-customers)
+    - [Retrieve Customer Downloads](#retrieve-customer-downloads)
 
 ---
 
@@ -68,8 +83,6 @@ Woo(url, key, secret {options})
 | `timeout`         | number  | 5000    | Request timeout in milliseconds.                                           |
 | `encoding`        | string  | 'utf8'  | Request encoding.                                                          |
 | `port`            | string  | ''      | Request port.                                                              |
-
-<a name="coupons"></a>
 
 ## Coupons
 
@@ -121,9 +134,11 @@ Woo(url, key, secret {options})
 
 #### Create Coupon
 
-`.couponCreate()`
+`.couponCreate()` or `.couponAdd()`
 
 > (method) Woo.couponCreate(data: object): object
+
+> (method) Woo.couponAdd(data: object): object
 
 Creates a new coupon.
 
@@ -232,9 +247,11 @@ woo
 
 #### Update Coupon
 
-`.couponUpdate()`
+`.couponUpdate()` or `.couponEdit()`
 
 > (method) Woo.couponUpdate(id: number, data: object): object
+
+> (method) Woo.couponEdit(id: number, data: object): object
 
 Make changes to a coupon.
 
@@ -255,9 +272,11 @@ woo
 
 #### Delete Coupon
 
-`.couponDelete()`
+`.couponDelete()` or `.couponRemove()`
 
 > (method) Woo.couponDelete(id: number, params?: object): object
+
+> (method) Woo.couponRemove(id: number, params?: object): object
 
 Delete a coupon.
 
@@ -281,6 +300,8 @@ woo
 | `force`   | boolean | Use `true` whether to permanently delete the coupon, Default is `false`. |
 
 #### Batch Update Coupons
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
 
 `.couponBatchUpdate()` or `.couponBatch()`
 
@@ -331,3 +352,309 @@ woo.couponBatchUpdate(, data)
     console.log(error);
   });
 ```
+
+## Customers
+
+### Customer properties
+
+| Property             | Type      | Description                                                                                          |
+| -------------------- | --------- | ---------------------------------------------------------------------------------------------------- |
+| `id`                 | integer   | Unique identifier for the resource. `READ-ONLY`                                                      |
+| `date_created`       | date-time | The date the customer was created, in the site's timezone. `READ-ONLY`                               |
+| `date_created_gmt`   | date-time | The date the customer was created, as GMT. `READ-ONLY`                                               |
+| `date_modified`      | date-time | The date the customer was last modified, in the site's timezone. `READ-ONLY`                         |
+| `date_modified_gmt`  | date-time | The date the customer was last modified, as GMT. `READ-ONLY`                                         |
+| `email`              | string    | Customer email address. `MANDATORY`                                                                  |
+| `first_name`         | string    | Customer first name.                                                                                 |
+| `last_name`          | string    | Customer last name.                                                                                  |
+| `role`               | string    | Customer role. `READ-ONLY`                                                                           |
+| `username`           | string    | Customer login name.                                                                                 |
+| `password`           | string    | Customer password. `WRITE-ONLY`                                                                      |
+| `billing`            | object    | List of billing address data. See [Customer - Billing Properties](#customer---billing-properties)    |
+| `shipping`           | object    | List of shipping address data. See [Customer - Shipping Properties](#customer---shipping-properties) |
+| `is_paying_customer` | boolean   | Shows if the customer is a paying customer. `READ-ONLY`                                              |
+| `avatar_url`         | string    | Avatar URL. `READ-ONLY`                                                                              |
+| `meta_data`          | array     | Meta data. See [Customer - Meta data properties](#customer---meta-data-properties)                   |
+
+#### Customer - Billing Properties
+
+| Attribute    | Type   | Description                                          |
+| ------------ | ------ | ---------------------------------------------------- |
+| `first_name` | string | First name.                                          |
+| `last_name`  | string | Last name.                                           |
+| `company`    | string | Company name.                                        |
+| `address_1`  | string | Address line 1.                                      |
+| `address_2`  | string | Address line 2.                                      |
+| `city`       | string | City name.                                           |
+| `state`      | string | ISO code or name of the state, province or district. |
+| `postcode`   | string | Postal code.                                         |
+| `country`    | string | ISO code of the country.                             |
+| `email`      | string | Email address.                                       |
+| `phone`      | string | Phone number.                                        |
+
+#### Customer - Shipping Properties
+
+| Attribute    | Type   | Description                                          |
+| ------------ | ------ | ---------------------------------------------------- |
+| `first_name` | string | First name.                                          |
+| `last_name`  | string | Last name.                                           |
+| `company`    | string | Company name.                                        |
+| `address_1`  | string | Address line 1.                                      |
+| `address_2`  | string | Address line 2.                                      |
+| `city`       | string | City name.                                           |
+| `state`      | string | ISO code or name of the state, province or district. |
+| `postcode`   | string | Postal code.                                         |
+| `country`    | string | ISO code of the country.                             |
+
+#### Customer - Meta data properties
+
+| Attribute | Type   | Description          |
+| --------- | ------ | -------------------- |
+| `id`      | number | Meta ID. `READ-ONLY` |
+| `key`     | string | Meta key.            |
+| `value`   | string | Meta value.          |
+
+### Customer methods
+
+#### Create Customer
+
+`.customerCreate()` or `.customerAdd()`
+
+> (method) Woo.customerCreate(data: object): object
+
+> (method) Woo.customerAdd(data: object): object
+
+Create a customer.
+
+Example:
+
+```javascript
+woo
+  .customerCreate(data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+#### Retrieve Customer
+
+`.customerRetrieve()` or `.customerGet()`
+
+> (method) Woo.customerRetrieve(id: number): object
+
+> (method) Woo.customerGet(id: number): object
+
+Retrieve and view a specific customer by ID.
+
+Example:
+
+```javascript
+woo
+  .customerRetrieve(1)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+#### List Customers
+
+`.customerList()` or `.customerGetAll()`
+
+> (method) Woo.customerList(params?: object): object
+
+> (method) Woo.customerGetAll(params?: object): object
+
+View all the customers.
+
+Example:
+
+```javascript
+woo
+  .customerList()
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### List Customers parameters
+
+| Parameter  | Type    | Description                                                                                                                                                                                 |
+| ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`  | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                                |
+| `page`     | integer | Current page of the collection. Default is `1`.                                                                                                                                             |
+| `per_page` | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                      |
+| `search`   | string  | Limit results to those matching a string.                                                                                                                                                   |
+| `exclude`  | array   | Ensure result set excludes specific IDs.                                                                                                                                                    |
+| `include`  | array   | Limit result set to specific ids.                                                                                                                                                           |
+| `offset`   | integer | Offset the result set by a specific number of items.                                                                                                                                        |
+| `order`    | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                                                                  |
+| `orderby`  | string  | Sort collection by object attribute. Options: `id`, `include`, `name` and `registered_date`. Default is `name`.                                                                             |
+| `email`    | string  | Limit result set to resources with a specific email.                                                                                                                                        |
+| `role`     | string  | Limit result set to resources with a specific role. Options: `all`, `administrator`, `editor`, `author`, `contributor`, `subscriber`, `customer` and `shop_manager`. Default is `customer`. |
+
+#### Update Customer
+
+`.customerUpdate()` or `.customerEdit()`
+
+> (method) Woo.customerUpdate(id: number, data: object): object
+
+> (method) Woo.customerEdit(id: number, data: object): object
+
+Update a customer.
+
+Example:
+
+```javascript
+woo
+  .customerUpdate(1, data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> [`data` options](#customer-properties)
+
+#### Delete Customer
+
+`.customerDelete()` or `.customerRemove()`
+
+> (method) Woo.customerDelete(id: number, params?: object): object
+
+> (method) Woo.customerRemove(id: number, params?: object): object
+
+Delete a customer.
+
+Example:
+
+```javascript
+woo
+  .customerDelete(1)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### Delete Customer parameters
+
+| Parameter  | Type    | Description                                                   |
+| ---------- | ------- | ------------------------------------------------------------- |
+| `force`    | boolean | Required to be `true`, as resource does not support trashing. |
+| `reassign` | integer | User ID to reassign posts to.                                 |
+
+#### Batch Update Customers
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
+`.customerBatch()` or `.customerBatchUpdate()`
+
+> (method) Woo.customerBatch(data: object): object
+
+> (method) Woo.customerBatchUpdate(data: object): object
+
+Update multiple customers in a single request.
+
+Example:
+
+```javascript
+const data = {
+  create: [
+    {
+      email: "john.doe2@example.com",
+      first_name: "John",
+      last_name: "Doe",
+      username: "john.doe2",
+      billing: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555",
+      },
+      shipping: {
+        first_name: "John",
+        last_name: "Doe",
+        company: "",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+      },
+    },
+    {
+      email: "joao.silva2@example.com",
+      first_name: "João",
+      last_name: "Silva",
+      username: "joao.silva2",
+      billing: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR",
+        email: "joao.silva@example.com",
+        phone: "(55) 5555-5555",
+      },
+      shipping: {
+        first_name: "João",
+        last_name: "Silva",
+        company: "",
+        address_1: "Av. Brasil, 432",
+        address_2: "",
+        city: "Rio de Janeiro",
+        state: "RJ",
+        postcode: "12345-000",
+        country: "BR",
+      },
+    },
+  ],
+  update: [
+    {
+      id: 26,
+      billing: {
+        phone: "(11) 1111-1111",
+      },
+    },
+  ],
+  delete: [11],
+};
+
+woo
+  .customerBatch(data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> [`data` options](#customer-properties)
+
+#### Retrieve Customer Downloads
