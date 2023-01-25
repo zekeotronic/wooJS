@@ -2,12 +2,11 @@ const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 class Woo {
   constructor(url, key, secret, options = {
-    wpAPIPrefix: '',
     version: 'wc/v3',
     encoding: 'utf-8',
     queryStringAuth: false,
     port: '',
-    timeout: 0
+    timeout: 5000
   }) {
     this.client = new WooCommerceRestApi({
       url: url,
