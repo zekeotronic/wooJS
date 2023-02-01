@@ -52,6 +52,15 @@ Extends [`@woocommerce/woocommerce-rest-api
     - [Order - Coupon lines properties](#order---coupon-lines-properties)
     - [Order - Refunds properties](#order---refunds-properties)
     - [Order - Taxes properties](#order---taxes-properties)
+  - [Order Methods](#order-methods)
+    - [Create Order](#create-order)
+    - [Retrieve Order](#retrieve-order)
+    - [List Orders](#list-orders)
+      - [List Orders Parameters](#list-orders-parameters)
+    - [Update Order](#update-order)
+    - [Delete Order](#delete-order)
+      - [Delete Order Parameters](#delete-order-parameters)
+    - [Batch Update Orders](#batch-update-orders)
 
 ---
 
@@ -865,22 +874,356 @@ woo
 | `shipping_tax_total` | string  | Shipping tax total. `READ-ONLY`                                              |
 | `meta_data`          | array   | Meta data. See [Order - Meta data properties](#order---meta-data-properties) |
 
-### Methods
+### Order Methods
 
 #### Create Order
 
+`.orderCreate()` or `.orderAdd()`
+
+> (method) Woo.orderCreate(data: object): object
+
+> (method) Woo.orderAdd(data: object): object
+
+Create a new order.
+
+Example:
+
+```javascript
+woo
+  .orderCreate(data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderAdd(data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
 #### Retrieve Order
+
+`.orderRetrieve()` or `.orderGet()`
+
+> (method) Woo.orderRetrieve(id: number, params?: object): object
+
+> (method) Woo.orderGet(id: number, params?: object): object
+
+Retrieve and view a specific order by ID.
+
+Example:
+
+```javascript
+woo
+  .orderRetrieve(id)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderGet(id)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
 
 ##### Retrieve Order parameters
 
+| Parameter | Type   | Description                      |
+| --------- | ------ | -------------------------------- |
+| `dp`      | string | Number of decimal points to use. |
+
 #### List Orders
+
+`.orderList()` or `.orderGetAll()`
+
+> (method) Woo.orderList(params?: object): object
+
+> (method) Woo.orderGetAll(params?: object): object
+
+Retrieve and view a specific order by ID.
+
+Example:
+
+```javascript
+woo
+  .orderList(params)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderGetAll(params)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
 
 ##### List Orders parameters
 
+| Parameter       | Type    | Description                                                                                                                                                                              |
+| --------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`       | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                                                             |
+| page            | integer | Current page of the collection. Default is `1`.                                                                                                                                          |
+| per_page        | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                                                                   |
+| search          | string  | Limit results to those matching a string.                                                                                                                                                |
+| after           | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                                                              |
+| before          | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                                                             |
+| modified_after  | string  | Limit response to resources modified after a given ISO8601 compliant date.                                                                                                               |
+| modified_before | string  | Limit response to resources modified before a given ISO8601 compliant date.                                                                                                              |
+| exclude         | array   | Ensure result set excludes specific IDs.                                                                                                                                                 |
+| include         | array   | Limit result set to specific ids.                                                                                                                                                        |
+| offset          | integer | Offset the result set by a specific number of items.                                                                                                                                     |
+| order           | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                                                              |
+| orderby         | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                                                                            |
+| parent          | array   | Limit result set to those of particular parent IDs.                                                                                                                                      |
+| parent_exclude  | array   | Limit result set to all items except those of a particular parent ID.                                                                                                                    |
+| status          | string  | Limit result set to orders assigned a specific status. Options: `any`, `pending`, `processing`, `on-hold`, `completed`, `cancelled`, `refunded`, `failed` and `trash`. Default is `any`. |
+| customer        | integer | Limit result set to orders assigned a specific customer ID.                                                                                                                              |
+| product         | integer | Limit result set to orders that include a specific product ID.                                                                                                                           |
+| dp              | string  | Number of decimal points to use. Default is `2`.                                                                                                                                         |
+
 #### Update Order
+
+`.orderUpdate()` or `.orderEdit()`
+
+> (method) Woo.orderUpdate(id: number, data: object): object
+
+> (method) Woo.orderEdit(id: number, data: object): object
+
+Update a specific order by ID.
+
+Example:
+
+```javascript
+woo
+  .orderUpdate(id, data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderEdit(id, data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> [`data` properties](#order-properties)
 
 #### Delete Order
 
+`.orderDelete()` or `.orderRemove()`
+
+> (method) Woo.orderDelete(id: number, params?: object): object
+
+> (method) Woo.orderRemove(id: number, params?: object): object
+
+Delete a specific order by ID.
+
+Example:
+
+```javascript
+woo
+  .orderDelete(id, params)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderRemove(id, params)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
 ##### Delete Order parameters
 
+| Parameter | Type   | Description                                                             |
+| --------- | ------ | ----------------------------------------------------------------------- |
+| `force`   | string | Use `true` whether to permanently delete the order, Default is `false`. |
+
 #### Batch Update Orders
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
+`.orderBatchUpdate()` or `.orderBatch()`
+
+> (method) Woo.orderBatchUpdate(data: object): object
+
+> (method) Woo.orderBatch(data: object): object
+
+Update multiple orders in a single request.
+
+Example:
+
+```javascript
+const data = {
+  create: [
+    {
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
+      billing: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555",
+      },
+      shipping: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+      },
+      line_items: [
+        {
+          product_id: 79,
+          quantity: 1,
+        },
+        {
+          product_id: 93,
+          quantity: 1,
+        },
+        {
+          product_id: 22,
+          variation_id: 23,
+          quantity: 1,
+        },
+      ],
+      shipping_lines: [
+        {
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
+          total: "30.00",
+        },
+      ],
+    },
+    {
+      payment_method: "bacs",
+      payment_method_title: "Direct Bank Transfer",
+      set_paid: true,
+      billing: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+        email: "john.doe@example.com",
+        phone: "(555) 555-5555",
+      },
+      shipping: {
+        first_name: "John",
+        last_name: "Doe",
+        address_1: "969 Market",
+        address_2: "",
+        city: "San Francisco",
+        state: "CA",
+        postcode: "94103",
+        country: "US",
+      },
+      line_items: [
+        {
+          product_id: 22,
+          variation_id: 23,
+          quantity: 1,
+        },
+        {
+          product_id: 22,
+          variation_id: 24,
+          quantity: 1,
+        },
+      ],
+      shipping_lines: [
+        {
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
+          total: "20.00",
+        },
+      ],
+    },
+  ],
+  update: [
+    {
+      id: 727,
+      shipping_methods: "Local Delivery",
+    },
+  ],
+  delete: [723],
+};
+```
+
+```javascript
+woo
+  .orderBatchUpdate(data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderBatch(data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```

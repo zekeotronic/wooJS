@@ -582,7 +582,7 @@ class Woo {
    * Batch create, update and delete multiple orders.
    * @async
    * @param {object} data 
-   * @returns 
+   * @returns {object} Response
    */
   async orderBatchUpdate(data) {
     try {
