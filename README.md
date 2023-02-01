@@ -61,6 +61,15 @@ Extends [`@woocommerce/woocommerce-rest-api
     - [Delete Order](#delete-order)
       - [Delete Order Parameters](#delete-order-parameters)
     - [Batch Update Orders](#batch-update-orders)
+- [Order Notes](#order-notes)
+  - [Order Notes Properties](#order-notes-properties)
+  - [Order Notes Methods](#order-notes-methods)
+    - [Create Order Note](#create-order-note)
+    - [Retrieve Order Note](#retrieve-order-note)
+    - [List All Order Notes](#list-all-order-notes)
+      - [List All Order Notes Parameters](#list-all-order-notes-parameters)
+    - [Delete Order Note](#delete-order-note)
+      - [Delete Order Note Parameters](#delete-order-note-parameters)
 
 ---
 
@@ -1227,3 +1236,175 @@ woo
     console.log(error);
   });
 ```
+
+## Order Notes
+
+### Order Notes properties
+
+| Attribute          | Type      | Description                                                                                                                                          |
+| ------------------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | integer   | Unique identifier for the resource. `READ-ONLY`                                                                                                      |
+| `author`           | string    | Note author. `READ-ONLY`                                                                                                                             |
+| `date_created`     | date-time | The date the note was created, in the site’s timezone. `READ-ONLY`                                                                                   |
+| `date_created_gmt` | date-time | The date the note was created, as GMT. `READ-ONLY`                                                                                                   |
+| `note`             | string    | Note content. `MANDATORY`                                                                                                                            |
+| `customer_note`    | boolean   | If `true`, the note will be shown to customers and they will be notified. If `false`, the note will be for admin reference only. Default is `false`. |
+| added_by_user      | boolean   | If `true`, this note will be attributed to the current user. If `false`, the note will be attributed to the system. Default is `false`.              |
+
+### Order Notes methods
+
+#### Create Order Note
+
+`.orderNoteCreate()` or `.orderNoteAdd()`
+
+> (method) Woo.orderNoteCreate(orderID: number, data: object): object
+
+> (method) Woo.orderNoteAdd(orderID: number, data: object): object
+
+Create a new note for an order.
+
+Example:
+
+```javascript
+const data = {
+  note: "This is a note.",
+  customer_note: true,
+};
+```
+
+```javascript
+woo
+  .orderNoteCreate(orderID, data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderNoteAdd(orderID, data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+#### Retrieve Order Note
+
+`.orderNoteRetrieve()` or `.orderNoteGet()`
+
+> (method) Woo.orderNoteRetrieve(orderID: number, noteID: number): object
+
+> (method) Woo.orderNoteGet(orderID: number, noteID: number): object
+
+Retrieve and view a specific note from an order.
+
+Example:
+
+```javascript
+woo
+  .orderNoteRetrieve(orderID, noteID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderNoteGet(orderID, noteID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+#### List all Order Notes
+
+`.orderNoteList()` or `.orderNoteGetAll()`
+
+> (method) Woo.orderNoteList(orderID: number): object
+
+> (method) Woo.orderNoteGetAll(orderID: number): object
+
+View all the notes from an order.
+
+Example:
+
+```javascript
+woo
+  .orderNoteList(orderID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderNoteGetAll(orderID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### List all Order Notes parameters
+
+| Parameter | Type   | Description                                                                                                                  |
+| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context` | string | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `type`    | string | Limit result to customers or internal notes. Options: `any`, `customer` and `internal`. Default is `any`.                    |
+
+#### Delete Order Note
+
+`.orderNoteDelete()` or `.orderNoteRemove()`
+
+> (method) Woo.orderNoteDelete(orderID: number, noteID: number): object
+
+> (method) Woo.orderNoteRemove(orderID: number, noteID: number): object
+
+Delete a specific note from an order.
+
+Example:
+
+```javascript
+woo
+  .orderNoteDelete(orderID, noteID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+```javascript
+woo
+  .orderNoteRemove(orderID, noteID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### Delete Order Note parameters
+
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| `force`   | string | Required to be `true`, as resource does not support trashing. |

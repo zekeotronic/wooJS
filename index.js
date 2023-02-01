@@ -611,35 +611,130 @@ class Woo {
   /**
    * Create a new note for an order.
    * @async
-   * @param {number} id 
+   * @param {number} orderID 
    * @param {object} data 
    * @returns {object} Response
    */
-  async orderNoteCreate(id, data) {
+  async orderNoteCreate(orderID, data) {
     try {
-      const response = await this.client.post(`orders/${id}/notes`, data)
+      const response = await this.client.post(`orders/${orderID}/notes`, data)
+      return response
     } catch (error) {
-      return error
+        return error
     }
   }
 
   /**
    * Create a new note for an order.
    * @async
-   * @param {number} id 
+   * @param {number} orderId 
    * @param {object} data 
    * @returns {object} Response
    */
-  async orderNoteAdd(id, data) {
+  async orderNoteAdd(orderID, data) {
     try {
-      const response = await this.client.post(`orders/${id}/notes`, data)
+      const response = await this.client.post(`orders/${orderID}/notes`, data)
+      return response
     } catch (error) {
-      return error
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific note from an order.
+   * @async
+   * @param {number} orderID 
+   * @param {number} noteID 
+   * @returns {object} Response
+   */
+  async orderNoteRetrieve(orderID, noteID) {
+    try {
+      const response = await this.client.get(`orders/${orderID}/notes/${noteID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific note from an order.
+   * @async
+   * @param {number} orderID 
+   * @param {number} noteID 
+   * @returns {object} Response
+   */
+  async orderNoteGet(orderID, noteID) {
+    try {
+      const response = await this.client.get(`orders/${orderID}/notes/${noteID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the notes from an order.
+   * @async
+   * @param {number} orderID 
+   * @returns {object} Response
+   */
+  async orderNoteList(orderID) {
+    try {
+      const response = await this.client.get(`orders/${orderID}/notes`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the notes from an order.
+   * @async
+   * @param {number} orderID 
+   * @returns {object} Response
+   */
+  async orderNoteGetAll(orderID) {
+    try {
+      const response = await this.client.get(`orders/${orderID}/notes`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete an order note.
+   * @async
+   * @param {number} orderID 
+   * @param {number} noteID 
+   * @returns {object} Response
+   */
+  async orderNoteDelete(orderID, noteID) {
+    try {
+      const response = await this.client.delete(`orders/${orderID}/notes/${noteID}`, { force: true })
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete an order note.
+   * @async
+   * @param {number} orderID 
+   * @param {number} noteID 
+   * @returns {object} Response
+   */
+  async orderNoteRemove(orderID, noteID) {
+    try {
+      const response = await this.client.delete(`orders/${orderID}/notes/${noteID}`, { force: true })
+      return response
+    } catch (error) {
+        return error
     }
   }
 
 
-  
 }
 
 
