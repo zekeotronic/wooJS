@@ -1408,3 +1408,68 @@ woo
 | Parameter | Type   | Description                                                   |
 | --------- | ------ | ------------------------------------------------------------- |
 | `force`   | string | Required to be `true`, as resource does not support trashing. |
+
+## Order Refunds
+
+### Order Refunds properties
+
+| Attribute          | Type      | Description                                                                                                                                                                     |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | integer   | Unique identifier for the resource. `READ-ONLY`                                                                                                                                 |
+| `date_created`     | date-time | The date the refund was created, in the site’s timezone. `READ-ONLY`                                                                                                            |
+| `date_created_gmt` | date-time | The date the refund was created, as GMT. `READ-ONLY`                                                                                                                            |
+| `amount`           | string    | Total refund amount. `Optional`. If this parameter is provided, it will take precedence over line item totals, even when total of line items does not matches with this amount. |
+| `reason`           | string    | Refund reason.                                                                                                                                                                  |
+| `refunded_by`      | integer   | ID of the user doing the refund. Default is the current user.                                                                                                                   |
+| refunded_payment   | boolean   | If the payment was refunded via the API. See `api_refund`.                                                                                                                      |
+| `meta_data`        | array     | Meta data. See [Order Refund Meta data properties](#order-refund-meta-data-properties).                                                                                         |
+| `line_items`       | array     | List of line items. See [Order Refund Line Items properties](#order-refund-line-items-properties).                                                                              |
+
+| `api_refund` | boolean | When `true`, the payment gateway API is used to generate the refund. Default is `true`. `WRITE-ONLY` |
+
+#### Order Refund Meta data properties
+
+| Attribute | Type    | Description          |
+| --------- | ------- | -------------------- |
+| `id`      | integer | Meta ID. `READ-ONLY` |
+| `key`     | string  | Meta key.            |
+| `value`   | string  | Meta value.          |
+
+#### Order Refund Line Items properties
+
+| Attribute      | Type    | Description                                                                                             |
+| -------------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `id`           | integer | Line item ID. `READ-ONLY`                                                                               |
+| `name`         | string  | Product name.                                                                                           |
+| `product_id`   | integer | Product ID.                                                                                             |
+| `variation_id` | integer | Variation ID, if applicable.                                                                            |
+| `quantity`     | integer | Quantity.                                                                                               |
+| `tax_class`    | integer | Tax class.                                                                                              |
+| `subtotal`     | string  | Line item subtotal.                                                                                     |
+| `subtotal_tax` | string  | Line item subtotal tax. `READ-ONLY`                                                                     |
+| `total`        | string  | Line item total.                                                                                        |
+| `total_tax`    | string  | Line item total tax. `READ-ONLY`                                                                        |
+| `taxes`        | array   | List of taxes. See [Order Refund Line Item Taxes properties](#order-refund-line-item-taxes-properties). |
+| `meta_data `   | array   | Meta data. See [Order Refund Meta data properties](#order-refund-meta-data-properties).                 |
+| `sku`          | string  | SKU.                                                                                                    |
+| `price`        | integer | Product price.                                                                                          |
+| `refund_total` | number  | Refund total. `WRITE-ONLY`                                                                              |
+
+##### Order Refund Line Item Taxes properties
+
+| Attribute      | Type    | Description                                    |
+| -------------- | ------- | ---------------------------------------------- |
+| `id`           | integer | Tax ID. `READ-ONLY`                            |
+| `total`        | string  | Tax total. `READ-ONLY`                         |
+| `subtotal`     | string  | Tax subtotal. `READ-ONLY`                      |
+| `refund_total` | string  | The amount to refund for this tax `WRITE-ONLY` |
+
+### Order Refunds methods
+
+#### Create Order Refund
+
+#### Retrieve Order Refund
+
+#### List All Order Refunds
+
+#### Delete Order Refund

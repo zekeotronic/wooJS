@@ -734,6 +734,133 @@ class Woo {
     }
   }
 
+  /**
+   * Create a new refund for an order.
+   * @async
+   * @param {number} orderID 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async refundCreate(orderID, data) {
+    try {
+      const response = await this.client.post(`orders/${orderID}/refunds`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Create a new refund for an order.
+   * @async
+   * @param {number} orderID 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async refundAdd(orderID, data) {
+    try {
+      const response = await this.client.post(`orders/${orderID}/refunds`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific refund from an order.
+   * @async
+   * @param {number} orderID 
+   * @param {number} refundID 
+   * @returns {object} Response
+   */
+  async refundRetrieve(orderID, refundID) {
+    try {
+      const response = await this.client.get(`orders/${orderID}/refunds/${refundID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific refund from an order.
+   * @async
+   * @param {number} orderID 
+   * @param {number} refundID 
+   * @returns {object} Response
+   */
+  async refundGet(orderID, refundID) {
+    try {
+      const response = await this.client.get(`orders/${orderID}/refunds/${refundID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the refunds from an order.
+   * @async
+   * @param {number} orderID 
+   * @returns {object} Response
+   */
+  async refundList(orderID) {
+    try {
+      const response = await this.client.get(`orders/${orderID}/refunds`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the refunds from an order.
+   * @async
+   * @param {number} orderID 
+   * @returns {object} Response
+   */
+  async refundGetAll(orderID) {
+    try {
+      const response = await this.client.get(`orders/${orderID}/refunds`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete an order refund.
+   * @async
+   * @param {number} orderID 
+   * @param {number} refundID 
+   * @returns {object} Response
+   */
+  async refundDelete(orderID, refundID) {
+    try {
+      const response = await this.client.delete(`orders/${orderID}/refunds/${refundID}`, { force: true })
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete an order refund.
+   * @async
+   * @param {number} orderID 
+   * @param {number} refundID 
+   * @returns {object} Response
+   */
+  async refundRemove(orderID, refundID) {
+    try {
+      const response = await this.client.delete(`orders/${orderID}/refunds/${refundID}`, { force: true })
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+
 
 }
 
