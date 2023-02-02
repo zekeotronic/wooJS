@@ -1055,6 +1055,203 @@ class Woo {
     }
   }
 
+  /**
+   * Create a new variation.
+   * @async
+   * @param {number} productID
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async variationCreate(productID, data) {
+    try {
+      const response = await this.client.post(`products/${productID}/variations`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Create a new variation.
+   * @async
+   * @param {number} productID
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async variationAdd(productID, data) {
+    try {
+      const response = await this.client.post(`products/${productID}/variations`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific product variation by ID.
+   * @async
+   * @param {number} productID
+   * @param {number} variationID 
+   * @returns {object} Response
+   */
+  async variationRetrieve(productID, variationID) {
+    try {
+      const response = await this.client.get(`products/${productID}/variations/${variationID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific product variation by ID.
+   * @async
+   * @param {number} productID
+   * @param {number} variationID 
+   * @returns {object} Response
+   */
+  async variationGet(productID, variationID) {
+    try {
+      const response = await this.client.get(`products/${productID}/variations/${variationID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the product variations.
+   * @async
+   * @param {number} productID
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async variationList(productID, params = {}) {
+    try {
+      const response = await this.client.get(`products/${productID}/variations`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the product variations.
+   * @async
+   * @param {number} productID
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async variationGetAll(productID, params = {}) {
+    try {
+      const response = await this.client.get(`products/${productID}/variations`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+
+  /**
+   * Make changes to a product variation.
+   * @async
+   * @param {number} productID
+   * @param {number} variationID
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async variationUpdate(productID, variationID, data) {
+    try {
+      const response = await this.client.put(`products/${productID}/variations/${variationID}`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Make changes to a product variation.
+   * @async
+   * @param {number} productID
+   * @param {number} variationID
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async variationEdit(productID, variationID, data) {
+    try {
+      const response = await this.client.put(`products/${productID}/variations/${variationID}`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete a product variation.
+   * @async
+   * @param {number} productID
+   * @param {number} variationID
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async variationDelete(productID, variationID, params = { force: true }) {
+    try {
+      const response = await this.client.delete(`products/${productID}/variations/${variationID}`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete a product variation.
+   * @async
+   * @param {number} productID
+   * @param {number} variationID
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async variationRemove(productID, variationID, params = { force: true }) {
+    try {
+      const response = await this.client.delete(`products/${productID}/variations/${variationID}`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple product variations.
+   * @async
+   * @param {number} productID
+   * @param {object} data
+   * @returns {object} Response
+   */
+  async variationBatch(productID, data) {
+    try {
+      const response = await this.client.post(`products/${productID}/variations/batch`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple product variations.
+   * @async
+   * @param {number} productID
+   * @param {object} data
+   * @returns {object} Response
+   */
+  async variationBatchUpdate(productID, data) {
+    try {
+      const response = await this.client.post(`products/${productID}/variations/batch`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
 }
 
 

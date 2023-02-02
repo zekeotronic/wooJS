@@ -90,6 +90,22 @@ Extends [`@woocommerce/woocommerce-rest-api
     - [Delete Product](#delete-product)
       - [Delete Product Parameters](#delete-product-parameters)
     - [Batch Update Products](#batch-update-products)
+- [Product Variations](#product-variations)
+  - [Product Variations Properties](#product-variations-properties)
+    - [Product Variation - Meta Data Properties](#product-variation---meta-data-properties)
+    - [Product Variation - Dimensions Properties](#product-variation---dimensions-properties)
+    - [Product Variation - Image Properties](#product-variation---image-properties)
+    - [Product Variation - Attributes Properties](#product-variation---attributes-properties)
+    - [Product Variation - Meta data Properties](#product-variation---meta-data-properties)
+  - [Product Variations Methods](#product-variations-methods)
+    - [Create Product Variation](#create-product-variation)
+    - [Retrieve Product Variation](#retrieve-product-variation)
+    - [List Product Variations](#list-product-variations)
+      - [List Product Variations Parameters](#list-product-variations-parameters)
+    - [Update Product Variation](#update-product-variation)
+    - [Delete Product Variation](#delete-product-variation)
+      - [Delete Product Variation Parameters](#delete-product-variation-parameters)
+    - [Batch Update Product Variations](#batch-update-product-variations)
 
 ---
 
@@ -1907,4 +1923,328 @@ woo
   .catch((error) => {
     console.log(error);
   });
+```
+
+## Product Variations
+
+### Product Variations properties
+
+| Attribute               | Type      | Description                                                                                                            |
+| ----------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `id`                    | integer   | Variation ID. `READ-ONLY`                                                                                              |
+| `date_created`          | date-time | The date the variation was created, in the site's timezone. `READ-ONLY`                                                |
+| `date_created_gmt`      | date-time | The date the variation was created, as GMT. `READ-ONLY`                                                                |
+| `date_modified`         | date-time | The date the variation was last modified, in the site's timezone. `READ-ONLY`                                          |
+| `date_modified_gmt`     | date-time | The date the variation was last modified, as GMT. `READ-ONLY`                                                          |
+| `description`           | string    | Variation description.                                                                                                 |
+| `permalink`             | string    | Variation URL. `READ-ONLY`                                                                                             |
+| `sku`                   | string    | Unique identifier.                                                                                                     |
+| `price`                 | string    | Current variation price. `READ-ONLY`                                                                                   |
+| `regular_price`         | string    | Variation regular price.                                                                                               |
+| `sale_price`            | string    | Variation sale price.                                                                                                  |
+| `date_on_sale_from`     | date-time | Start date of sale price, in the site's timezone.                                                                      |
+| `date_on_sale_from_gmt` | date-time | Start date of sale price, as GMT.                                                                                      |
+| `date_on_sale_to`       | date-time | End data of sale price, in the site's timezone.                                                                        |
+| `date_on_sale_to_gmt`   | date-time | End data of sale price, as GMT.                                                                                        |
+| `on_sale`               | boolean   | Shows if the variation is on sale. `READ-ONLY`                                                                         |
+| `status`                | string    | Variation status. Options: `draft`, `pending`, `private` and `publish`. Default is `publish`.                          |
+| `purchasable`           | boolean   | Shows if the variation can be bought. `READ-ONLY`                                                                      |
+| `virtual`               | boolean   | If the variation is virtual. Default is `false`.                                                                       |
+| `downloadable`          | boolean   | If the variation is downloadable. Default is `false`.                                                                  |
+| `downloads`             | array     | List of downloadable files. See [Product variation - Downloads properties](#product-variation---downloads-properties). |
+| `download_limit`        | integer   | Number of times downloadable files can be downloaded after purchase. Default is `-1`.                                  |
+| `download_expiry`       | integer   | Number of days until access to downloadable files expires. Default is `-1`.                                            |
+| `tax_status`            | string    | Tax status. Options: `taxable`, `shipping` and `none`. Default is `taxable`.                                           |
+| `tax_class`             | string    | Tax class.                                                                                                             |
+| `manage_stock`          | boolean   | Stock management at variation level. Default is `false`.                                                               |
+| `stock_quantity`        | integer   | Stock quantity.                                                                                                        |
+| `stock_status`          | string    | Controls the stock status of the product. Options: `instock`, `outofstock`, `onbackorder`. Default is `instock`.       |
+| `backorders`            | string    | If managing stock, this controls if backorders are allowed. Options: `no`, `notify` and `yes`. Default is `no`.        |
+| `backorders_allowed`    | boolean   | Shows if backorders are allowed. `READ-ONLY`                                                                           |
+| `backordered`           | boolean   | Shows if the variation is on backordered. `READ-ONLY`                                                                  |
+| `weight`                | string    | Variation weight.                                                                                                      |
+| `dimensions`            | object    | Variation dimensions. See [Product variation - Dimensions properties](#product-variation---dimensions-properties).     |
+| `shipping_class`        | string    | Shipping class slug.                                                                                                   |
+| `shipping_class_id`     | string    | Shipping class ID. `READ-ONLY`                                                                                         |
+| `image`                 | object    | Variation image data. See [Product variation - Image properties](#product-variation---image-properties).               |
+| `attributes`            | array     | List of attributes. See [Product variation - Attributes properties](#product-variation---attributes-properties).       |
+| `menu_order`            | integer   | Menu order, used to custom sort products.                                                                              |
+| `meta_data`             | array     | Meta data. See [Product variation - Meta data properties](#product-variation---meta-data-properties).                  |
+
+#### Product variation - Downloads properties
+
+| Attribute | Type   | Description |
+| --------- | ------ | ----------- |
+| `id`      | string | File ID.    |
+| `name`    | string | File name.  |
+| `file`    | string | File URL.   |
+
+#### Product variation - Dimensions properties
+
+| Attribute | Type   | Description       |
+| --------- | ------ | ----------------- |
+| `length`  | string | Variation length. |
+| `width`   | string | Variation width.  |
+| `height`  | string | Variation height. |
+
+#### Product variation - Image properties
+
+| Attribute           | Type      | Description                                                               |
+| ------------------- | --------- | ------------------------------------------------------------------------- |
+| `id`                | integer   | Image ID.                                                                 |
+| `date_created`      | date-time | The date the image was created, in the site's timezone. `READ-ONLY`       |
+| `date_created_gmt`  | date-time | The date the image was created, as GMT. `READ-ONLY`                       |
+| `date_modified`     | date-time | The date the image was last modified, in the site's timezone. `READ-ONLY` |
+| `date_modified_gmt` | date-time | The date the image was last modified, as GMT. `READ-ONLY`                 |
+| `src`               | string    | Image URL.                                                                |
+| `name`              | string    | Image name.                                                               |
+| `alt`               | string    | Image alternative text.                                                   |
+
+#### Product variation - Attributes properties
+
+| Attribute | Type    | Description                   |
+| --------- | ------- | ----------------------------- |
+| `id`      | integer | Attribute ID.                 |
+| `name`    | string  | Attribute name.               |
+| `option`  | string  | Selected attribute term name. |
+
+#### Product variation - Meta data properties
+
+| Attribute | Type    | Description          |
+| --------- | ------- | -------------------- |
+| `id`      | integer | Meta ID. `READ-ONLY` |
+| `key`     | string  | Meta key.            |
+| `value`   | string  | Meta value.          |
+
+### Product Variations methods
+
+#### Create Product Variation
+
+`.variationCreate()` or `.variationAdd()`
+
+> (method) Woo.variationCreate(productID: number, data: object): object
+
+> (method) Woo.variationAdd(productID: number, data: object): object
+
+Create a new variation.
+
+Example:
+
+```javascript
+const data = {
+  regular_price: "9.00",
+  image: {
+    id: 423
+  },
+  attributes: [
+    {
+      id: 9,
+      option: "Black"
+    }
+  ]
+};
+
+woo.
+  .variationCreate( 56, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### Retrieve Product Variation
+
+`.variationRetrieve()` or `.variationGet()`
+
+> (method) Woo.variationRetrieve(productID: number, variationID: number): object
+
+> (method) Woo.variationGet(productID: number, variationID: number): object
+
+Retrieve and view a specific product variation by ID.
+
+Example:
+
+```javascript
+woo.
+  .variationRetrieve( 56, 57 )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### List Product Variations
+
+`.variationList()` or `.variationGetAll()`
+
+> (method) Woo.variationList(productID: number, params?: object): object
+
+> (method) Woo.variationGetAll(productID: number, params?: object): object
+
+View all the product variations.
+
+Example:
+
+```javascript
+woo.
+  .variationList( 56 )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+##### List Product Variations parameters
+
+| Parameter        | Type    | Description                                                                                                                             |
+| ---------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.            |
+| `page`           | integer | Current page of the collection. Default is `1`.                                                                                         |
+| `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`. Maximum is `100`.                                                |
+| `search`         | string  | Limit results to those matching a string.                                                                                               |
+| `after`          | string  | Limit response to resources published after a given ISO8601 compliant date.                                                             |
+| `before`         | string  | Limit response to resources published before a given ISO8601 compliant date.                                                            |
+| `exclude`        | array   | Ensure result set excludes specific IDs.                                                                                                |
+| `include`        | array   | Limit result set to specific ids.                                                                                                       |
+| `offset`         | integer | Offset the result set by a specific number of items.                                                                                    |
+| `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                             |
+| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title` and `slug`. Default is `date`.                           |
+| `parent`         | array   | Limit result set to those of particular parent IDs.                                                                                     |
+| `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                                   |
+| `slug`           | string  | Limit result set to products with a specific slug.                                                                                      |
+| `status`         | string  | Limit result set to products assigned a specific status. Options: `any`, `draft`, `pending`, `private` and `publish`. Default is `any`. |
+| `sku`            | string  | Limit result set to products with a specific SKU.                                                                                       |
+| `tax_class`      | string  | Limit result set to products with a specific tax class. Default options: `standard`, `reduced-rate` and `zero-rate`.                    |
+| `on_sale`        | boolean | Limit result set to products on sale.                                                                                                   |
+| `min_price`      | string  | Limit result set to products based on a minimum price.                                                                                  |
+| `max_price`      | string  | Limit result set to products based on a maximum price.                                                                                  |
+| `stock_status`   | string  | Limit result set to products with specified stock status. Options: `instock`, `outofstock` and `onbackorder`.                           |
+
+#### Update Product Variation
+
+`.variationUpdate()` or `.variationEdit()`
+
+> (method) Woo.variationUpdate(productID: number, variationID: number, data: object): object
+
+> (method) Woo.variationEdit(productID: number, variationID: number, data: object): object
+
+Make changes to a product variation.
+
+Example:
+
+```javascript
+const data = {
+  regular_price: "9.00",
+  image: {
+    id: 423
+  },
+  attributes: [
+    {
+      id: 9,
+      option: "Black"
+    }
+  ]
+};
+
+woo.
+  .variationUpdate( 56, 57, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### Delete Product Variation
+
+`.variationDelete()` or `.variationRemove()`
+
+> (method) Woo.variationDelete(productID: number, variationID: number, params?: object): object
+
+> (method) Woo.variationRemove(productID: number, variationID: number, params?: object): object
+
+Delete a product variation.
+
+Example:
+
+```javascript
+woo.
+  .variationDelete( 56, 57 )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+##### Delete Product Variation parameters
+
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| `force`   | boolen | Required to be `true`, as resource does not support trashing. |
+
+#### Batch Update Product Variations
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
+`.variationBatch()` or `.variationBatchUpdate()`
+
+> (method) Woo.variationBatch(productID: number, data: object): object
+
+> (method) Woo.variationBatchUpdate(productID: number, data: object): object
+
+Batch create, update and delete multiple product variations.
+
+Example:
+
+```javascript
+const data = {
+  create: [
+    {
+      regular_price: "9.00",
+      image: {
+        id: 423
+      },
+      attributes: [
+        {
+          id: 9,
+          option: "Black"
+        }
+      ]
+    }
+  ],
+  update: [
+    {
+      id: 57,
+      regular_price: "9.00",
+      image: {
+        id: 423
+      },
+      attributes: [
+        {
+          id: 9,
+          option: "Black"
+        }
+      ]
+    }
+  ],
+  delete: [ 58 ]
+};
+
+woo.
+  .variationBatch( 56, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
 ```
