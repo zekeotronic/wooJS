@@ -70,6 +70,16 @@ Extends [`@woocommerce/woocommerce-rest-api
       - [List All Order Notes Parameters](#list-all-order-notes-parameters)
     - [Delete Order Note](#delete-order-note)
       - [Delete Order Note Parameters](#delete-order-note-parameters)
+- [Order Refunds](#order-refunds)
+  - [Order Refunds Properties](#order-refunds-properties)
+  - [Order Refunds Methods](#order-refunds-methods)
+    - [Create Order Refund](#create-order-refund)
+    - [Retrieve Order Refund](#retrieve-order-refund)
+    - [List All Order Refunds](#list-all-order-refunds)
+      - [List All Order Refunds Parameters](#list-all-order-refunds-parameters)
+    - [Update Order Refund](#update-order-refund)
+    - [Delete Order Refund](#delete-order-refund)
+      - [Delete Order Refund Parameters](#delete-order-refund-parameters)
 
 ---
 
