@@ -1252,6 +1252,180 @@ class Woo {
     }
   }
 
+  /**
+   * Create a new product attribute.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async attributeCreate(data) {
+    try {
+      const response = await this.client.post(`products/attributes`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Create a new product attribute.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async attributeAdd(data) {
+    try {
+      const response = await this.client.post(`products/attributes`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific product attribute by ID.
+   * @param {number} id 
+   * @returns {object} Response
+   */
+  async attributeRetrieve(id) {
+    try {
+      const response = await this.client.get(`products/attributes/${id}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific product attribute by ID.
+   * @param {number} id 
+   * @returns {object} Response
+   */
+  async attributeGet(id) {
+    try {
+      const response = await this.client.get(`products/attributes/${id}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the product attributes.
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async attributeList(params = {}) {
+    try {
+      const response = await this.client.get(`products/attributes`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the product attributes.
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async attributeGetAll(params = {}) {
+    try {
+      const response = await this.client.get(`products/attributes`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Make changes to a product attribute.
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async attributeUpdate(id, data) {
+    try {
+      const response = await this.client.put(`products/attributes/${id}`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Make changes to a product attribute.
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async attributeEdit(id, data) {
+    try {
+      const response = await this.client.put(`products/attributes/${id}`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete a product attribute.
+   * @param {number} id 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async attributeDelete(id, params = { force: true }) {
+    try {
+      const response = await this.client.delete(`products/attributes/${id}`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete a product attribute.
+   * @param {number} id 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async attributeRemove(id, params = { force: true }) {
+    try {
+      const response = await this.client.delete(`products/attributes/${id}`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple product attributes.
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async attributeBatch(data) {
+    try {
+      const response = await this.client.post(`products/attributes/batch`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple product attributes.
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async attributeBatchUpdate(data) {
+    try {
+      const response = await this.client.post(`products/attributes/batch`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
 }
 
 

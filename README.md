@@ -106,6 +106,17 @@ Extends [`@woocommerce/woocommerce-rest-api
     - [Delete Product Variation](#delete-product-variation)
       - [Delete Product Variation Parameters](#delete-product-variation-parameters)
     - [Batch Update Product Variations](#batch-update-product-variations)
+- [Product Attributes](#product-attributes)
+  - [Product Attributes Properties](#product-attribute-properties)
+  - [Product Attributes Methods](#product-attribute-methods)
+    - [Create Product Attribute](#create-product-attribute)
+    - [Retrieve Product Attribute](#retrieve-product-attribute)
+    - [List Product Attributes](#list-product-attributes)
+      - [List Product Attributes Parameters](#list-product-attributes-parameters)
+    - [Update Product Attribute](#update-product-attribute)
+    - [Delete Product Attribute](#delete-product-attribute)
+      - [Delete Product Attribute Parameters](#delete-product-attribute-parameters)
+    - [Batch Update Product Attributes](#batch-update-product-attributes)
 
 ---
 
@@ -2187,9 +2198,9 @@ woo.
 
 ##### Delete Product Variation parameters
 
-| Parameter | Type   | Description                                                   |
-| --------- | ------ | ------------------------------------------------------------- |
-| `force`   | boolen | Required to be `true`, as resource does not support trashing. |
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| `force`   | boolean | Required to be `true`, as resource does not support trashing. |
 
 #### Batch Update Product Variations
 
@@ -2241,6 +2252,210 @@ const data = {
 
 woo.
   .variationBatch( 56, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+## Product Attributes
+
+### Product Attribute properties
+
+| Attribute      | Type    | Description                                                                                      |
+| -------------- | ------- | ------------------------------------------------------------------------------------------------ |
+| `id`           | number  | Unique identifier for the resource. `READ-ONLY`                                                  |
+| `name`         | string  | Attribute name. `MANDATORY`                                                                      |
+| `slug`         | string  | An alphanumeric identifier for the resource unique to its type.                                  |
+| `type`         | string  | Type of attribute. By default only `select` is supported.                                        |
+| `order_by`     | string  | Default sort order. Options: `menu_order`, `name`, `name_num` and `id`. Default is `menu_order`. |
+| `has_archives` | boolean | Enable/Disable attribute archives. Default is `false`.                                           |
+
+### Product Attribute methods
+
+#### Create Product Attribute
+
+`.attributeCreate()` or `.attributeAdd()`
+
+> (method) Woo.attributeCreate(data: object): object
+
+> (method) Woo.attributeAdd(data: object): object
+
+Create a new product attribute.
+
+Example:
+
+```javascript
+const data = {
+  name: "Color",
+  type: "select",
+  order_by: "menu_order",
+  has_archives: true
+};
+
+woo.
+  .attributeCreate( data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### Retrieve Product Attribute
+
+`.attributeRetrieve()` or `.attributeGet()`
+
+> (method) Woo.attributeRetrieve(id: number): object
+
+> (method) Woo.attributeGet(id: number): object
+
+Retrieve a product attribute.
+
+Example:
+
+```javascript
+woo.
+  .attributeRetrieve( 9 )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### List Product Attributes
+
+`.attributeList()` or `.attributeGetAll()`
+
+> (method) Woo.attributeList(params?: object): object
+
+> (method) Woo.attributeGetAll(params?: object): object
+
+View all the product attributes.
+
+Example:
+
+```javascript
+woo.
+  .attributeList()
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+##### List Product Attributes parameters
+
+| Parameter | Type   | Description                                                                                                                  |
+| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context` | string | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+
+#### Update Product Attribute
+
+`.attributeUpdate()` or `.attributeEdit()`
+
+> (method) Woo.attributeUpdate(id: number, data: object): object
+
+> (method) Woo.attributeEdit(id: number, data: object): object
+
+Make changes to a product attribute.
+
+Example:
+
+```javascript
+const data = {
+  name: "Color",
+  type: "select",
+  order_by: "menu_order",
+  has_archives: true
+};
+
+woo.
+  .attributeUpdate( 9, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### Delete Product Attribute
+
+> This also will delete all terms from the selected attribute.
+
+`.attributeDelete()` or `.attributeRemove()`
+
+> (method) Woo.attributeDelete(id: number, params?: object): object
+
+> (method) Woo.attributeRemove(id: number, params?: object): object
+
+Delete a product attribute.
+
+Example:
+
+```javascript
+woo.
+  .attributeDelete( 9, { force: true } )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+##### Delete Product Attribute parameters
+
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| `force`   | boolean | Required to be `true`, as resource does not support trashing. |
+
+#### Batch Update Product Attributes
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
+`.attributeBatch()` or `.attributeBatchUpdate()`
+
+> (method) Woo.attributeBatch(data: object): object
+
+> (method) Woo.attributeBatchUpdate(data: object): object
+
+Batch create, update and delete multiple product attributes.
+
+Example:
+
+```javascript
+const data = {
+  create: [
+    {
+      name: "Color",
+      type: "select",
+      order_by: "menu_order",
+      has_archives: true
+    }
+  ],
+  update: [
+    {
+      id: 9,
+      name: "Color",
+      type: "select",
+      order_by: "menu_order",
+      has_archives: true
+    }
+  ],
+  delete: [ 10 ]
+};
+
+woo.
+  .attributeBatch( data )
   .then( response => {
     console.log( response );
   } )
