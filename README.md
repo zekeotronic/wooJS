@@ -77,7 +77,6 @@ Extends [`@woocommerce/woocommerce-rest-api
     - [Retrieve Order Refund](#retrieve-order-refund)
     - [List All Order Refunds](#list-all-order-refunds)
       - [List All Order Refunds Parameters](#list-all-order-refunds-parameters)
-    - [Update Order Refund](#update-order-refund)
     - [Delete Order Refund](#delete-order-refund)
       - [Delete Order Refund Parameters](#delete-order-refund-parameters)
 
