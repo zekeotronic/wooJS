@@ -771,11 +771,12 @@ class Woo {
    * @async
    * @param {number} orderID 
    * @param {number} refundID 
+   * @param {object} params
    * @returns {object} Response
    */
-  async refundRetrieve(orderID, refundID) {
+  async refundRetrieve(orderID, refundID, params = {}) {
     try {
-      const response = await this.client.get(`orders/${orderID}/refunds/${refundID}`)
+      const response = await this.client.get(`orders/${orderID}/refunds/${refundID}`, params)
       return response
     } catch (error) {
         return error
@@ -787,11 +788,12 @@ class Woo {
    * @async
    * @param {number} orderID 
    * @param {number} refundID 
+   * @param {object} params
    * @returns {object} Response
    */
-  async refundGet(orderID, refundID) {
+  async refundGet(orderID, refundID, params = {}) {
     try {
-      const response = await this.client.get(`orders/${orderID}/refunds/${refundID}`)
+      const response = await this.client.get(`orders/${orderID}/refunds/${refundID}`, params)
       return response
     } catch (error) {
         return error
@@ -802,11 +804,12 @@ class Woo {
    * View all the refunds from an order.
    * @async
    * @param {number} orderID 
+   * @param {object} params
    * @returns {object} Response
    */
-  async refundList(orderID) {
+  async refundList(orderID, params = {}) {
     try {
-      const response = await this.client.get(`orders/${orderID}/refunds`)
+      const response = await this.client.get(`orders/${orderID}/refunds`, params)
       return response
     } catch (error) {
         return error
@@ -817,11 +820,12 @@ class Woo {
    * View all the refunds from an order.
    * @async
    * @param {number} orderID 
+   * @param {object} params
    * @returns {object} Response
    */
-  async refundGetAll(orderID) {
+  async refundGetAll(orderID, params = {}) {
     try {
-      const response = await this.client.get(`orders/${orderID}/refunds`)
+      const response = await this.client.get(`orders/${orderID}/refunds`, params)
       return response
     } catch (error) {
         return error
@@ -833,11 +837,12 @@ class Woo {
    * @async
    * @param {number} orderID 
    * @param {number} refundID 
+   * @param {object} params
    * @returns {object} Response
    */
-  async refundDelete(orderID, refundID) {
+  async refundDelete(orderID, refundID, params = { force: true }) {
     try {
-      const response = await this.client.delete(`orders/${orderID}/refunds/${refundID}`, { force: true })
+      const response = await this.client.delete(`orders/${orderID}/refunds/${refundID}`, params)
       return response
     } catch (error) {
         return error
@@ -849,11 +854,12 @@ class Woo {
    * @async
    * @param {number} orderID 
    * @param {number} refundID 
+   * @param {object} params
    * @returns {object} Response
    */
-  async refundRemove(orderID, refundID) {
+  async refundRemove(orderID, refundID, params = { force: true}) {
     try {
-      const response = await this.client.delete(`orders/${orderID}/refunds/${refundID}`, { force: true })
+      const response = await this.client.delete(`orders/${orderID}/refunds/${refundID}`, params)
       return response
     } catch (error) {
         return error

@@ -1468,8 +1468,134 @@ woo
 
 #### Create Order Refund
 
+`.refundCreate()` or `.refundAdd()`
+
+> (method) Woo.refundCreate(orderID: number, data: object): object
+
+> (method) Woo.refundAdd(orderID: number, data: object): object
+
+Create a new refund for an order.
+
+Example:
+
+```javascript
+woo
+  .refundCreate(orderID, {
+    amount: "10.00",
+    reason: "Refund for order",
+    refunded_by: 1,
+    line_items: [
+      {
+        id: 1,
+        quantity: 1,
+        refund_total: 10,
+      },
+    ],
+  })
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
 #### Retrieve Order Refund
+
+`.refundRetrieve()` or `.refundGet()`
+
+> (method) Woo.refundRetrieve(orderID: number, refundID: number, params?: object): object
+
+> (method) Woo.refundGet(orderID: number, refundID: number, params?: object): object
+
+Retrieve and view a specific refund from an order.
+
+Example:
+
+```javascript
+woo
+  .refundRetrieve(orderID, refundID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### Retrieve Order Refund parameters
+
+| Parameter | Type   | Description                                       |
+| --------- | ------ | ------------------------------------------------- |
+| `dp`      | string | Number of decimal points to use in each resource. |
 
 #### List All Order Refunds
 
+`.refundList()` or `.refundGetAll()`
+
+> (method) Woo.refundList(orderID: number, params?: object): object
+
+> (method) Woo.refundGetAll(orderID: number, params?: object): object
+
+View all the refunds from an order.
+
+Example:
+
+```javascript
+woo
+  .refundList(orderID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### List All Order Refunds parameters
+
+| Parameter        | Type    | Description                                                                                                                  |
+| ---------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `context`        | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`. |
+| `page`           | integer | Current page of the collection. Default is `1`.                                                                              |
+| `per_page`       | integer | Maximum number of items to be returned in result set. Default is `10`.                                                       |
+| `search`         | string  | Limit results to those matching a string.                                                                                    |
+| `after`          | string  | Limit response to resources published after a given ISO8601 compliant date.                                                  |
+| `before`         | string  | Limit response to resources published before a given ISO8601 compliant date.                                                 |
+| `exclude`        | array   | Ensure result set excludes specific IDs.                                                                                     |
+| `include`        | array   | Limit result set to specific ids.                                                                                            |
+| `offset`         | integer | Offset the result set by a specific number of items.                                                                         |
+| `order`          | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                  |
+| `orderby`        | string  | Sort collection by object attribute. Options: `date`, `include`, `id`, `title` and `slug`. Default is `date`.                |
+| `parent`         | array   | Limit result set to those of particular parent IDs.                                                                          |
+| `parent_exclude` | array   | Limit result set to all items except those of a particular parent ID.                                                        |
+| `dp`             | string  | Number of decimal points to use in each resource.                                                                            |
+
 #### Delete Order Refund
+
+`.refundDelete()` or `.refundRemove()`
+
+> (method) Woo.refundDelete(orderID: number, refundID: number, params?: object): object
+
+> (method) Woo.refundRemove(orderID: number, refundID: number, params?: object): object
+
+Delete an order refund.
+
+Example:
+
+```javascript
+woo
+  .refundDelete(orderID, refundID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### Delete Order Refund parameters
+
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| `force`   | boolean | Required to be `true`, as resource does not support trashing. |
