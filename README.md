@@ -117,6 +117,17 @@ Extends [`@woocommerce/woocommerce-rest-api
     - [Delete Product Attribute](#delete-product-attribute)
       - [Delete Product Attribute Parameters](#delete-product-attribute-parameters)
     - [Batch Update Product Attributes](#batch-update-product-attributes)
+- [Product Attribute Terms](#product-attribute-terms)
+  - [Product Attribute Terms Properties](#product-attribute-term-properties)
+  - [Product Attribute Terms Methods](#product-attribute-term-methods)
+    - [Create Product Attribute Term](#create-product-attribute-term)
+    - [Retrieve Product Attribute Term](#retrieve-product-attribute-term)
+    - [List Product Attribute Terms](#list-product-attribute-terms)
+      - [List Product Attribute Terms Parameters](#list-product-attribute-terms-parameters)
+    - [Update Product Attribute Term](#update-product-attribute-term)
+    - [Delete Product Attribute Term](#delete-product-attribute-term)
+      - [Delete Product Attribute Term Parameters](#delete-product-attribute-term-parameters)
+    - [Batch Update Product Attribute Terms](#batch-update-product-attribute-terms)
 
 ---
 
@@ -2456,6 +2467,216 @@ const data = {
 
 woo.
   .attributeBatch( data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+## Product Attribute Terms
+
+### Product Attribute Term properties
+
+| Attribute     | Type    | Description                                                     |
+| ------------- | ------- | --------------------------------------------------------------- |
+| `id`          | integer | Unique identifier for the resource. `READ-ONLY`                 |
+| `name`        | string  | Term name. `MANDATORY`                                          |
+| `slug`        | string  | An alphanumeric identifier for the resource unique to its type. |
+| `description` | string  | HTML description of the resource.                               |
+| `menu_order`  | integer | Menu order, used to custom sort the terms.                      |
+| `count`       | integer | Number of published products for the resource. `READ-ONLY`      |
+
+### Product Attribute Term methods
+
+#### Create Product Attribute Term
+
+`.termCreate()` or `.termAdd()`
+
+> (method) Woo.termCreate(attributeID: number, data: object): object
+
+> (method) Woo.termAdd(attributeID: number, data: object): object
+
+Create a new product attribute term.
+
+Example:
+
+```javascript
+const data = {
+  name: "Blue",
+  slug: "blue"
+};
+
+woo.
+  .termCreate( 9, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### Retrieve Product Attribute Term
+
+`.termRetrieve()` or `.termGet()`
+
+> (method) Woo.termRetrieve(attributeID: number, termID: number): object
+
+> (method) Woo.termGet(attributeID: number, termID: number): object
+
+Retrieve a product attribute term by ID.
+
+Example:
+
+```javascript
+woo.
+  .termRetrieve( 9, 10 )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### List Product Attribute Terms
+
+`.termList()` or `.termGetAll()`
+
+> (method) Woo.termList(attributeID: number, params?: object): object
+
+> (method) Woo.termGetAll(attributeID: number, params?: object): object
+
+Retrieve all terms from a product attribute.
+
+Example:
+
+```javascript
+woo.
+  .termList( 9 )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+##### List Product Attribute Terms parameters
+
+| Parameter    | Type    | Description                                                                                                                                  |
+| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                 |
+| `page`       | integer | Current page of the collection.                                                                                                              |
+| `per_page`   | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                       |
+| `search`     | string  | Limit results to those matching a string.                                                                                                    |
+| `exclude`    | array   | Ensure result set excludes specific IDs.                                                                                                     |
+| `include`    | array   | Limit result set to specific ids.                                                                                                            |
+| `order`      | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                   |
+| `orderby`    | string  | Sort collection by resource attribute. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. Default is `name`. |
+| `hide_empty` | boolean | Whether to hide resources not assigned to any products. Default is `false`.                                                                  |
+| `parent`     | integer | Limit result set to resources assigned to a specific parent.                                                                                 |
+| `product`    | integer | Limit result set to resources assigned to a specific product.                                                                                |
+| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                          |
+
+#### Update Product Attribute Term
+
+`.termUpdate()` or `.termEdit()`
+
+> (method) Woo.termUpdate(attributeID: number, termID: number): object
+
+> (method) Woo.termEdit(attributeID: number, termID: number): object
+
+Make changes to a product attribute term.
+
+Example:
+
+```javascript
+const data = {
+  name: "Blue",
+  slug: "blue"
+};
+
+woo.
+  .termUpdate( 9, 10, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### Delete Product Attribute Term
+
+`.termDelete()` or `.termRemove()`
+
+> (method) Woo.termDelete(attributeID: number, termID: number, params?: object): object
+
+> (method) Woo.termRemove(attributeID: number, termID: number, params?: object): object
+
+Delete a product attribute term.
+
+Example:
+
+```javascript
+
+woo.
+  .termDelete( 9, 10, { force: true } )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+##### Delete Product Attribute Term parameters
+
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| `force`   | boolean | Required to be `true`, as resource does not support trashing. |
+
+#### Batch Update Product Attribute Terms
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
+`.termBatch()` or `.termBatchUpdate()`
+
+> (method) Woo.termBatch(attributeID: number, data: object): object
+
+> (method) Woo.termBatchUpdate(attributeID: number, data: object): object
+
+Batch create, update and delete multiple product attribute terms.
+
+Example:
+
+```javascript
+const data = {
+  create: [
+    {
+      name: "Blue",
+      slug: "blue"
+    },
+    {
+      name: "Green",
+      slug: "green"
+    }
+  ],
+  update: [
+    {
+      id: 10,
+      name: "Blue",
+      slug: "blue"
+    }
+  ],
+  delete: [ 11 ]
+};
+
+woo.
+  .termBatch( 9, data )
   .then( response => {
     console.log( response );
   } )

@@ -1426,6 +1426,186 @@ class Woo {
     }
   }
 
+  /**
+   * Create a new product attribute term.
+   * @param {number} attributeID 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async termCreate(attributeID, data) {
+    try {
+      const response = await this.client.post(`products/attributes/${attributeID}/terms`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Create a new product attribute term.
+   * @param {number} attributeID 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async termAdd(attributeID, data) {
+    try {
+      const response = await this.client.post(`products/attributes/${attributeID}/terms`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve a product attribute term by ID.
+   * @param {number} attributeID 
+   * @param {number} termID 
+   * @returns {object} Response
+   */
+  async termRetrieve(attributeID, termID) {
+    try {
+      const response = await this.client.get(`products/attributes/${attributeID}/terms/${termID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve a product attribute term by ID.
+   * @param {number} attributeID 
+   * @param {number} termID 
+   * @returns {object} Response
+   */
+  async termGet(attributeID, termID) {
+    try {
+      const response = await this.client.get(`products/attributes/${attributeID}/terms/${termID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve all terms from a product attribute.
+   * @param {number} attributeID 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async termList(attributeID, params = {}) {
+    try {
+      const response = await this.client.get(`products/attributes/${attributeID}/terms`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve all terms from a product attribute.
+   * @param {number} attributeID 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async termGetAll(attributeID, params = {}) {
+    try {
+      const response = await this.client.get(`products/attributes/${attributeID}/terms`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Make changes to a product attribute term.
+   * @param {number} attributeID 
+   * @param {number} termID 
+   * @returns {object} Response
+   */
+  async termUpdate(attributeID, termID) {
+    try {
+      const response = await this.client.put(`products/attributes/${attributeID}/terms/${termID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Make changes to a product attribute term.
+   * @param {number} attributeID 
+   * @param {number} termID 
+   * @returns {object} Response
+   */
+  async termEdit(attributeID, termID) {
+    try {
+      const response = await this.client.put(`products/attributes/${attributeID}/terms/${termID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete a product attribute term.
+   * @param {number} attributeID 
+   * @param {number} termID 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async termDelete(attributeID, termID, params = {force: true}) {
+    try {
+      const response = await this.client.delete(`products/attributes/${attributeID}/terms/${termID}`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete a product attribute term.
+   * @param {number} attributeID 
+   * @param {number} termID 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async termRemove(attributeID, termID, params = {force: true}) {
+    try {
+      const response = await this.client.delete(`products/attributes/${attributeID}/terms/${termID}`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple product attribute terms.
+   * @param {number} attributeID 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async termBatch(attributeID, data) {
+    try {
+      const response = await this.client.post(`products/attributes/${attributeID}/terms/batch`, data)
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple product attribute terms.
+   * @param {number} attributeID 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async termBatchUpdate(attributeID, data) {
+    try {
+      const response = await this.client.post(`products/attributes/${attributeID}/terms/batch`, data)
+    } catch (error) {
+      return error
+    }
+  }
+
 }
 
 
