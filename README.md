@@ -102,8 +102,7 @@ npm i woojs
 ## Usage
 
 ```javascript
-const Woo = require('woojs)
-
+const Woo = require("woojs");
 const woo = new Woo(url, consumerKey, consumerSecret);
 ```
 
