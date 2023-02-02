@@ -79,6 +79,17 @@ Extends [`@woocommerce/woocommerce-rest-api
       - [List All Order Refunds Parameters](#list-all-order-refunds-parameters)
     - [Delete Order Refund](#delete-order-refund)
       - [Delete Order Refund Parameters](#delete-order-refund-parameters)
+- [Products](#products)
+  - [Products properties](#products-properties)
+  - [Products methods](#products-methods)
+    - [Create Product](#create-product)
+    - [Retrieve Product](#retrieve-product)
+    - [List Products](#list-all-products)
+      - [List Products Parameters](#list-all-products-parameters)
+    - [Update Product](#update-product)
+    - [Delete Product](#delete-product)
+      - [Delete Product Parameters](#delete-product-parameters)
+    - [Batch Update Products](#batch-update-products)
 
 ---
 
@@ -1341,9 +1352,9 @@ woo
 
 `.orderNoteList()` or `.orderNoteGetAll()`
 
-> (method) Woo.orderNoteList(orderID: number): object
+> (method) Woo.orderNoteList(orderID: number, params?: object): object
 
-> (method) Woo.orderNoteGetAll(orderID: number): object
+> (method) Woo.orderNoteGetAll(orderID: number, params?: object): object
 
 View all the notes from an order.
 
@@ -1382,9 +1393,9 @@ woo
 
 `.orderNoteDelete()` or `.orderNoteRemove()`
 
-> (method) Woo.orderNoteDelete(orderID: number, noteID: number): object
+> (method) (method) Woo.orderNoteDelete(orderID: number, noteID: number, params?: object): object
 
-> (method) Woo.orderNoteRemove(orderID: number, noteID: number): object
+> (method) Woo.orderNoteRemove(orderID: number, noteID: number, params?: object): object
 
 Delete a specific note from an order.
 
@@ -1608,3 +1619,295 @@ woo
 | Parameter | Type    | Description                                                   |
 | --------- | ------- | ------------------------------------------------------------- |
 | `force`   | boolean | Required to be `true`, as resource does not support trashing. |
+
+## Products
+
+### Products properties
+
+### Products methods
+
+#### Create Product
+
+`.productCreate()` or `.productAdd()`
+
+> (method) Woo.productCreate(data: object): object
+
+> (method) Woo.productAdd(data: object): object
+
+Create a new product.
+
+Example:
+
+```javascript
+const data = {
+  name: "Premium Quality",
+  type: "simple",
+  regular_price: "21.99",
+  description:
+    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+  short_description:
+    "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+  categories: [
+    {
+      id: 9,
+    },
+    {
+      id: 14,
+    },
+  ],
+  images: [
+    {
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg",
+    },
+    {
+      src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg",
+    },
+  ],
+};
+
+woo
+  .productCreate(data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+#### Retrieve Product
+
+`.productRetrieve()` or `.productGet()`
+
+> (method) Woo.productRetrieve(productID: number): object
+
+> (method) Woo.productGet(productID: number): object
+
+Retrieve a product.
+
+Example:
+
+```javascript
+woo
+  .productRetrieve(productID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+#### List All Products
+
+`.productList()` or `.productGetAll()`
+
+> (method) Woo.productList(params?: object): object
+
+> (method) Woo.productGetAll(params?: object): object
+
+View all products.
+
+Example:
+
+```javascript
+woo
+  .productList()
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### List All Products parameters
+
+| Parameter         | Type    | Description                                                                                                                                    |
+| ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`         | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                   |
+| `page`            | integer | Current page of the collection. Default is `1`.                                                                                                |
+| `per_page`        | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                         |
+| `search`          | string  | Limit results to those matching a string.                                                                                                      |
+| `after`           | string  | Limit response to resources published after a given ISO8601 compliant date.                                                                    |
+| `before`          | string  | Limit response to resources published before a given ISO8601 compliant date.                                                                   |
+| `modified_after`  | string  | Limit response to resources modified after a given ISO8601 compliant date.                                                                     |
+| `modified_before` | string  | Limit response to resources modified before a given ISO8601 compliant date.                                                                    |
+| `dates_are_gmt`   | boolean | Whether to consider GMT post dates when limiting response by published or modified date.                                                       |
+| `exclude`         | array   | Ensure result set excludes specific IDs.                                                                                                       |
+| `include`         | array   | Limit result set to specific ids.                                                                                                              |
+| `offset`          | integer | Offset the result set by a specific number of items.                                                                                           |
+| `order`           | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `desc`.                                                    |
+| `orderby`         | string  | Sort collection by object attribute. Options: `date`, `id`, `include`, `title`, `slug`, `price`, `popularity` and `rating`. Default is `date`. |
+| `parent`          | array   | Limit result set to those of particular parent IDs.                                                                                            |
+| `parent_exclude`  | array   | Limit result set to all items except those of a particular parent ID.                                                                          |
+| `slug`            | string  | Limit result set to products with a specific slug.                                                                                             |
+| `status`          | string  | Limit result set to products assigned a specific status. Options: `any`, `draft`, `pending`, `private` and `publish`. Default is `any`.        |
+| `type`            | string  | Limit result set to products assigned a specific type. Options: `simple`, `grouped`, `external` and `variable`.                                |
+| `sku`             | string  | Limit result set to products with a specific SKU.                                                                                              |
+| `featured`        | boolean | Limit result set to featured products.                                                                                                         |
+| `category`        | string  | Limit result set to products assigned a specific category ID.                                                                                  |
+| `tag`             | string  | Limit result set to products assigned a specific tag ID.                                                                                       |
+| `shipping_class`  | string  | Limit result set to products assigned a specific shipping class ID.                                                                            |
+| `attribute`       | string  | Limit result set to products with a specific attribute.                                                                                        |
+| `attribute_term`  | string  | Limit result set to products with a specific attribute term ID (required an assigned attribute).                                               |
+| `tax_class`       | string  | Limit result set to products with a specific tax class. Default `options`: `standard`, `reduced-rate` and `zero-rate`.                         |
+| `on_sale`         | boolean | Limit result set to products on sale.                                                                                                          |
+| `min_price`       | string  | Limit result set to products based on a minimum price.                                                                                         |
+| `max_price`       | string  | Limit result set to products based on a maximum price.                                                                                         |
+| `stock_status`    | string  | Limit result set to products with specified stock status. Options: `instock`, `outofstock` and `onbackorder`.                                  |
+
+#### Update Product
+
+`.productUpdate()` or `.productEdit()`
+
+> (method) Woo.productUpdate(productID: number, data: object): object
+
+> (method) Woo.productEdit(productID: number, data: object): object
+
+Update a product.
+
+Example:
+
+```javascript
+const data = {
+  regular_price: "24.54",
+};
+
+woo
+  .productUpdate(productID, data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+#### Delete Product
+
+`.productDelete()` or `.productRemove()`
+
+> (method) Woo.productDelete(productID: number, params?: object): object
+
+> (method) Woo.productRemove(productID: number, params?: object): object
+
+Delete a product.
+
+Example:
+
+```javascript
+woo
+  .productDelete(productID)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+##### Delete Product parameters
+
+| Parameter | Type   | Description                                                               |
+| --------- | ------ | ------------------------------------------------------------------------- |
+| `force`   | string | Use `true` whether to permanently delete the product, Default is `false`. |
+
+#### Batch Update Products
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
+`.productBatch()` or `.productBatchUpdate()`
+
+> (method) Woo.productBatch(data: object): object
+
+> (method) Woo.productBatchUpdate(data: object): object
+
+Batch create, update and delete multiple products.
+
+Example:
+
+```javascript
+const data = {
+  create: [
+    {
+      name: "Woo Single #1",
+      type: "simple",
+      regular_price: "21.99",
+      virtual: true,
+      downloadable: true,
+      downloads: [
+        {
+          name: "Woo Single",
+          file: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg",
+        },
+      ],
+      categories: [
+        {
+          id: 11,
+        },
+        {
+          id: 13,
+        },
+      ],
+      images: [
+        {
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/cd_4_angle.jpg",
+        },
+      ],
+    },
+    {
+      name: "New Premium Quality",
+      type: "simple",
+      regular_price: "21.99",
+      description:
+        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.",
+      short_description:
+        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+      categories: [
+        {
+          id: 9,
+        },
+        {
+          id: 14,
+        },
+      ],
+      images: [
+        {
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_front.jpg",
+        },
+        {
+          src: "http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_2_back.jpg",
+        },
+      ],
+    },
+  ],
+  update: [
+    {
+      id: 799,
+      default_attributes: [
+        {
+          id: 6,
+          name: "Color",
+          option: "Green",
+        },
+        {
+          id: 0,
+          name: "Size",
+          option: "M",
+        },
+      ],
+    },
+  ],
+  delete: [794],
+};
+
+woo
+  .productBatch(data)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```

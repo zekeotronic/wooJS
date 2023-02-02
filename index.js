@@ -676,11 +676,12 @@ class Woo {
    * View all the notes from an order.
    * @async
    * @param {number} orderID 
+   * * @param {object} params
    * @returns {object} Response
    */
-  async orderNoteList(orderID) {
+  async orderNoteList(orderID, params = {}) {
     try {
-      const response = await this.client.get(`orders/${orderID}/notes`)
+      const response = await this.client.get(`orders/${orderID}/notes`, params)
       return response
     } catch (error) {
         return error
@@ -691,11 +692,29 @@ class Woo {
    * View all the notes from an order.
    * @async
    * @param {number} orderID 
+   * @param {object} params
    * @returns {object} Response
    */
-  async orderNoteGetAll(orderID) {
+  async orderNoteGetAll(orderID, params = {}) {
     try {
-      const response = await this.client.get(`orders/${orderID}/notes`)
+      const response = await this.client.get(`orders/${orderID}/notes`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete an order note.
+   * @async
+   * @param {number} orderID 
+   * @param {number} noteID 
+   * @param {object} params
+   * @returns {object} Response
+   */
+  async orderNoteDelete(orderID, noteID, params = { force: true }) {
+    try {
+      const response = await this.client.delete(`orders/${orderID}/notes/${noteID}`, params)
       return response
     } catch (error) {
         return error
@@ -709,25 +728,9 @@ class Woo {
    * @param {number} noteID 
    * @returns {object} Response
    */
-  async orderNoteDelete(orderID, noteID) {
+  async orderNoteRemove(orderID, noteID, params = { force: true }) {
     try {
-      const response = await this.client.delete(`orders/${orderID}/notes/${noteID}`, { force: true })
-      return response
-    } catch (error) {
-        return error
-    }
-  }
-
-  /**
-   * Delete an order note.
-   * @async
-   * @param {number} orderID 
-   * @param {number} noteID 
-   * @returns {object} Response
-   */
-  async orderNoteRemove(orderID, noteID) {
-    try {
-      const response = await this.client.delete(`orders/${orderID}/notes/${noteID}`, { force: true })
+      const response = await this.client.delete(`orders/${orderID}/notes/${noteID}`, params)
       return response
     } catch (error) {
         return error
@@ -867,6 +870,190 @@ class Woo {
   }
 
 
+  /**
+   * Create a new product.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async productCreate(data) {
+    try {
+      const response = await this.client.post(`products`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Create a new product.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async productAdd(data) {
+    try {
+      const response = await this.client.post(`products`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific product by ID.
+   * @async
+   * @param {number} productID 
+   * @returns {object} Response
+   */
+  async productRetrieve(productID) {
+    try {
+      const response = await this.client.get(`products/${productID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve and view a specific product by ID.
+   * @async
+   * @param {number} productID 
+   * @returns {object} Response
+   */
+  async productGet(productID) {
+    try {
+      const response = await this.client.get(`products/${productID}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the products
+   * @async
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async productList(params = {}) {
+    try {
+      const response = await this.client.get(`products`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * View all the products
+   * @async
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async productGetAll(params = {}) {
+    try {
+      const response = await this.client.get(`products`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+
+  /**
+   * Make changes to a product.
+   * @async
+   * @param {number} productID 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async productUpdate(productID, data) {
+    try {
+      const response = await this.client.put(`products/${productID}`, data)
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Make changes to a product.
+   * @async
+   * @param {number} productID 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async productEdit(productID, data) {
+    try {
+      const response = await this.client.put(`products/${productID}`, data)
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Delete a product.
+   * @async
+   * @param {number} productID 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async productDelete(productID, params = { force: false }) {
+    try {
+      const response = await this.client.delete(`products/${productID}`, params)
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Delete a product.
+   * @async
+   * @param {number} productID 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async productRemove(productID, params = { force: false }) {
+    try {
+      const response = await this.client.delete(`products/${productID}`, params)
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple products.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async productBatch(data) {
+    try {
+      const response = await this.client.post(`products/batch`, data)
+      return response
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple products.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async productBatchUpdate(data) {
+    try {
+      const response = await this.client.post(`products/batch`, data)
+      return response
+    } catch (error) {
+      return error
+    }
+  }
 
 }
 
