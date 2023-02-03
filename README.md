@@ -128,6 +128,18 @@ Extends [`@woocommerce/woocommerce-rest-api
     - [Delete Product Attribute Term](#delete-product-attribute-term)
       - [Delete Product Attribute Term Parameters](#delete-product-attribute-term-parameters)
     - [Batch Update Product Attribute Terms](#batch-update-product-attribute-terms)
+- [Product Categories](#product-categories)
+  - [Product Categories Properties](#product-category-properties)
+    - [Product category - Image properties](#product-category---image-properties)
+  - [Product Categories Methods](#product-category-methods)
+    - [Create Product Category](#create-product-category)
+    - [Retrieve Product Category](#retrieve-product-category)
+    - [List Product Categories](#list-product-categories)
+      - [List Product Categories Parameters](#list-product-categories-parameters)
+    - [Update Product Category](#update-product-category)
+    - [Delete Product Category](#delete-product-category)
+      - [Delete Product Category Parameters](#delete-product-category-parameters)
+    - [Batch Update Product Categories](#batch-update-product-categories)
 
 ---
 
@@ -2677,6 +2689,227 @@ const data = {
 
 woo.
   .termBatch( 9, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+## Product Categories
+
+### Product category properties
+
+| Attribute     | Type    | Description                                                                                                      |
+| ------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `id`          | number  | Unique identifier for the resource. `READ-ONLY`                                                                  |
+| `name`        | string  | Category name. `MANDATORY`                                                                                       |
+| `slug`        | string  | An alphanumeric identifier for the resource unique to its type.                                                  |
+| `parent`      | integer | The ID for the parent of the resource.                                                                           |
+| `description` | string  | HTML description of the resource.                                                                                |
+| `display`     | string  | Category archive display type. Options: `default`, `products`, `subcategories` and `both`. Default is `default`. |
+| `image`       | object  | Image data. See [Product category - Image properties](#product-category---image-properties)                      |
+| `menu_order`  | integer | Menu order, used to custom sort the resources.                                                                   |
+| `count`       | integer | Number of published products for the resource. `READ-ONLY`                                                       |
+
+#### Product category - Image properties
+
+| Attribute           | Type      | Description                                                               |
+| ------------------- | --------- | ------------------------------------------------------------------------- |
+| `id`                | number    | Image ID.                                                                 |
+| `date_created`      | date-time | The date the image was created, in the site's timezone. `READ-ONLY`       |
+| `date_created_gmt`  | date-time | The date the image was created, as GMT. `READ-ONLY`                       |
+| `date_modified`     | date-time | The date the image was last modified, in the site's timezone. `READ-ONLY` |
+| `date_modified_gmt` | date-time | The date the image was last modified, as GMT. `READ-ONLY`                 |
+| `src`               | string    | Image URL.                                                                |
+| `name`              | string    | Image name.                                                               |
+| `alt`               | string    | Image alternative text.                                                   |
+
+### Product Category methods
+
+#### Create Product Category
+
+`.categoryCreate()` or `.categoryAdd()`
+
+> (method) Woo.categoryCreate(data: object): object
+
+> (method) Woo.categoryAdd(data: object): object
+
+Create a product category.
+
+Example:
+
+```javascript
+const data = {
+  name: "Clothing",
+  slug: "clothing"
+};
+
+woo.
+  .categoryCreate( data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### Retrieve Product Category
+
+`.categoryRetrieve()` or `.categoryGet()`
+
+> (method) Woo.categoryRetrieve(id: number): object
+
+> (method) Woo.categoryGet(id: number): object
+
+Retrieve a product category.
+
+Example:
+
+```javascript
+woo.
+  .categoryRetrieve( 9 )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### List Product Categories
+
+`.categoryList()` or `.categoryGetAll()`
+
+> (method) Woo.categoryList(params?: object): object
+
+> (method) Woo.categoryGetAll(params?: object): object
+
+List all product categories.
+
+Example:
+
+```javascript
+woo.
+  .categoryList()
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+##### List Product Categories parameters
+
+| Parameter    | Type    | Description                                                                                                                                  |
+| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                 |
+| `page`       | integer | Current page of the collection. Default is `1`.                                                                                              |
+| `per_page`   | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                       |
+| `search`     | string  | Limit results to those matching a string.                                                                                                    |
+| `exclude`    | array   | Ensure result set excludes specific IDs.                                                                                                     |
+| `include`    | array   | Limit result set to specific ids.                                                                                                            |
+| `order`      | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                   |
+| `orderby`    | string  | Sort collection by resource attribute. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. Default is `name`. |
+| `hide_empty` | boolean | Whether to hide resources not assigned to any products. Default is `false`.                                                                  |
+| `parent`     | integer | Limit result set to resources assigned a specific parent.                                                                                    |
+| `product`    | integer | Limit result set to resources assigned a specific product.                                                                                   |
+| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                          |
+
+#### Update Product Category
+
+`.categoryUpdate()` or `.categoryEdit()`
+
+> (method) Woo.categoryUpdate(id: number, data: object): object
+
+> (method) Woo.categoryEdit(id: number, data: object): object
+
+Update a product category.
+
+Example:
+
+```javascript
+const data = {
+  name: "Clothing",
+  slug: "clothing"
+};
+
+woo.
+  .categoryUpdate( 9, data )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+#### Delete Product Category
+
+`.categoryDelete()` or `.categoryRemove()`
+
+> (method) Woo.categoryDelete(id: number, params?: object): object
+
+> (method) Woo.categoryRemove(id: number, params?: object): object
+
+Delete a product category.
+
+Example:
+
+```javascript
+woo.
+  .categoryDelete( 9, { force: true } )
+  .then( response => {
+    console.log( response );
+  } )
+  .catch( error => {
+    console.log( error );
+  } );
+```
+
+##### Delete Product Category parameters
+
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| `force`   | boolean | Required to be `true`, as resource does not support trashing. |
+
+#### Batch Update Product Categories
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
+`.categoryBatch()` or `.categoryBatchUpdate()`
+
+> (method) Woo.categoryBatch(data: object): object
+
+> (method) Woo.categoryBatchUpdate(data: object): object
+
+Batch create, update and delete multiple product categories.
+
+Example:
+
+```javascript
+const data = {
+  create: [
+    {
+      name: "Clothing",
+      slug: "clothing"
+    }
+  ],
+  update: [
+    {
+      id: 9,
+      name: "Clothing",
+      slug: "clothing"
+    }
+  ],
+  delete: [ 10 ]
+};
+
+woo.
+  .categoryBatch( data )
   .then( response => {
     console.log( response );
   } )

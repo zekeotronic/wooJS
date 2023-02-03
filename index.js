@@ -1606,6 +1606,190 @@ class Woo {
     }
   }
 
+  /**
+   * Create a new product category.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async categoryCreate(data) {
+    try {
+      const response = await this.client.post(`products/categories`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Create a new product category.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async categoryAdd(data) {
+    try {
+      const response = await this.client.post(`products/categories`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve a product category by ID.
+   * @async
+   * @param {number} id 
+   * @returns {object} Response
+   */
+  async categoryRetrieve(id) {
+    try {
+      const response = await this.client.get(`products/categories/${id}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve a product category by ID.
+   * @async
+   * @param {number} id 
+   * @returns {object} Response
+   */
+  async categoryGet(id) {
+    try {
+      const response = await this.client.get(`products/categories/${id}`)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve all product categories.
+   * @async
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async categoryList(params = {}) {
+    try {
+      const response = await this.client.get(`products/categories`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Retrieve all product categories.
+   * @async
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async categoryGetAll(params = {}) {
+    try {
+      const response = await this.client.get(`products/categories`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Make changes to a product category.
+   * @async
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async categoryUpdate(id, data) {
+    try {
+      const response = await this.client.put(`products/categories/${id}`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Make changes to a product category.
+   * @async
+   * @param {number} id 
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async categoryEdit(id, data) {
+    try {
+      const response = await this.client.put(`products/categories/${id}`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete a product category.
+   * @async
+   * @param {number} id 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async categoryDelete(id, params = { force: true}) {
+    try {
+      const response = await this.client.delete(`products/categories/${id}`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Delete a product category.
+   * @async
+   * @param {number} id 
+   * @param {object} params 
+   * @returns {object} Response
+   */
+  async categoryRemove(id, params = { force: true}) {
+    try {
+      const response = await this.client.delete(`products/categories/${id}`, params)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple product categories.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async categoryBatch(data) {
+    try {
+      const response = await this.client.post(`products/categories/batch`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
+  /**
+   * Batch create, update and delete multiple product categories.
+   * @async
+   * @param {object} data 
+   * @returns {object} Response
+   */
+  async categoryBatchUpdate(data) {
+    try {
+      const response = await this.client.post(`products/categories/batch`, data)
+      return response
+    } catch (error) {
+        return error
+    }
+  }
+
 }
 
 
