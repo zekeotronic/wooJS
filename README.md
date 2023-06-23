@@ -2917,3 +2917,66 @@ woo.
     console.log( error );
   } );
 ```
+
+## Product shipping classes
+
+### Product shipping class properties
+
+| Attribute     | Type    | Description                                                     |
+| ------------- | ------- | --------------------------------------------------------------- |
+| `id`          | integer | Unique identifier for the resource. `READ-ONLY`                 |
+| `name`        | string  | Shipping class name. `MANDATORY`                                |
+| `slug`        | string  | An alphanumeric identifier for the resource unique to its type. |
+| `description` | string  | HTML description of the resource.                               |
+| `count`       | integer | Number of published products for the resource. `READ-ONLY`      |
+
+### Product shipping class methods
+
+#### Create Product Shipping Class
+
+`.shippingClassCreate()` or `.shippingClassAdd()`
+
+#### Retrieve Product Shipping Class
+
+`.shippingClassRetrieve()` or `.shippingClassGet()`
+
+#### List Product Shipping Classes
+
+`.shippingClassList()` or `.shippingClassGetAll()`
+
+##### List Product Shipping Classes parameters
+
+| Parameter    | Type    | Description                                                                                                                                  |
+| ------------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `context`    | string  | Scope under which the request is made; determines fields present in response. Options: `view` and `edit`. Default is `view`.                 |
+| `page`       | integer | Current page of the collection. Default is `1`.                                                                                              |
+| `per_page`   | integer | Maximum number of items to be returned in result set. Default is `10`.                                                                       |
+| `search`     | string  | Limit results to those matching a string.                                                                                                    |
+| `exclude`    | array   | Ensure result set excludes specific IDs.                                                                                                     |
+| `include`    | array   | Limit result set to specific ids.                                                                                                            |
+| `offset`     | integer | Offset the result set by a specific number of items.                                                                                         |
+| `order`      | string  | Order sort attribute ascending or descending. Options: `asc` and `desc`. Default is `asc`.                                                   |
+| `orderby`    | string  | Sort collection by resource attribute. Options: `id`, `include`, `name`, `slug`, `term_group`, `description` and `count`. Default is `name`. |
+| `hide_empty` | boolean | Whether to hide resources not assigned to any products. Default is `false`.                                                                  |
+| `product`    | integer | Limit result set to resources assigned a specific product.                                                                                   |
+| `slug`       | string  | Limit result set to resources with a specific slug.                                                                                          |
+
+#### Update Product Shipping Class
+
+`.shippingClassUpdate()` or `.shippingClassEdit()`
+
+#### Delete Product Shipping Class
+
+`.shippingClassDelete()` or `.shippingClassRemove()`
+
+##### Delete Product Shipping Class parameters
+
+| Parameter | Type    | Description                                                   |
+| --------- | ------- | ------------------------------------------------------------- |
+| `force`   | boolean | Required to be `true`, as resource does not support trashing. |
+
+#### Batch Update Product Shipping Classes
+
+> Note: By default it's limited to up to 100 objects to be created, updated or deleted.
+
+`.shippingClassBatch()` or `.shippingClassBatchUpdate()`

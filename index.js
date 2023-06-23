@@ -19,6 +19,7 @@ class Woo {
     encoding: 'utf-8',
     queryStringAuth: false,
     port: '',
+    wpAPIPrefix: null,
     timeout: 5000
   }) {
     this.client = new WooCommerceRestApi({
@@ -29,6 +30,7 @@ class Woo {
       encoding: options.encoding,
       queryStringAuth: options.queryStringAuth,
       port: options.port,
+      wpAPIPrefix: options.wpAPIPrefix,
       timeout: options.timeout
     });
   }
